@@ -11,6 +11,7 @@ function App() {
   return (
       <div className="App">
         <h1>HEJ</h1>
+          <h2>hej från michelle</h2>
         {customers.map(value =>
             <div>
               {value.name}
