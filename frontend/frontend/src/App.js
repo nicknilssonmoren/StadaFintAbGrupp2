@@ -2,18 +2,23 @@ import './App.css';
 import {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Login from './Login'
+import Header from './Header'
+import AdminPage from "./AdminPage";
+import Register from "./Register";
 
 function App() {
     const [customers, setCustomers] = useState([])
-    useEffect(() => {
+    const [display, setDisplay] = useState([])
+
+    /*useEffect(() => {
         fetch("http://localhost:8080/customers")
             .then(req => req.json())
             .then(json => setCustomers(json))
-    }, [])
+    }, [])*/
+    useState()
     return (
         <div className="App w-100">
-            <h1>HEJ</h1>
-            <h2>hej från michelle</h2>
+            <Header/>
             {customers.map(value =>
                 <div>
                     {value.name}
