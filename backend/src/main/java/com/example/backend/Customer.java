@@ -1,9 +1,13 @@
 package com.example.backend;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Value;
 
-@Value
+@Getter
+@Setter
 public class Customer {
-    String id;
     String name;
+    Integer age;
+    String gender;
+    String documentId;
 }
