@@ -5,6 +5,9 @@ class Register extends Component {
         return (
             <div>
                 <h1>register</h1>
+                <h1>register</h1>
+                <h1>register</h1>
+                <h1>register</h1>
 
             </div>
         );

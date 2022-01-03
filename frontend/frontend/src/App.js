@@ -5,28 +5,18 @@ import Login from './Login'
 import Header from './Header'
 import AdminPage from "./AdminPage";
 import Register from "./Register";
+import React from "react";
+import ReactDOM from "react-dom";
 
-function App() {
-    const [customers, setCustomers] = useState([])
-    const [display, setDisplay] = useState([])
-
-    /*useEffect(() => {
-        fetch("http://localhost:8080/customers")
-            .then(req => req.json())
-            .then(json => setCustomers(json))
-    }, [])*/
-    useState()
-    return (
-        <div className="App w-100">
-            <Header/>
-            {customers.map(value =>
-                <div>
-                    {value.name}
-                </div>
-            )}
-            <Login/>
-        </div>
-    );
-}
-
-export default App;
+// function App() {
+//     function showLogin(props) {
+//         return <Login />;
+//     }
+//
+//     function showRegister(props) {
+//         return <Register />;
+//     }
+//
+// }
+//
+// export default App;
