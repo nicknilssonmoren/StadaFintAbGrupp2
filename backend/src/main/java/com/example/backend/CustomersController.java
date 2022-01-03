@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CustomersController {
     @GetMapping
-    public List<Customer> all(){
+    public List<Customer> all() {
         return List.of(new Customer("001", "John"));
     }
 

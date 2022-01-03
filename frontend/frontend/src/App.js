@@ -1,23 +1,25 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+import Login from './Login'
+import React from 'react';
+import Register from "./Register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage";
 
 function App() {
-  const [customers, setCustomers] = useState([])
-  useEffect(()=>{
-    fetch("http://localhost:8080/customers")
-        .then(req => req.json())
-        .then(json => setCustomers(json))
-  },[])
-  return (
-      <div className="App">
-        <h1>HEJ</h1>
-        {customers.map(value =>
-            <div>
-              {value.name}
-            </div>
-        )}
-      </div>
-  );
+    return(
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="*" element={<NoPage />} />
+            </Route>
+        </Routes>
+    </BrowserRouter>)
 }
 
 export default App;
