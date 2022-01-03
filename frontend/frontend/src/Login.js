@@ -28,10 +28,17 @@ class Login extends Component {
                             </div>
                         </div>
                         <div className={"d-flex justify-content-around"}>
-                            <button type="button" className="col-md-4 btn btn-primary">Login
-                            </button>
-                            <button type="button" className="col-md-4 btn btn-secondary">Register
-                            </button>
+                            <a href={"/"}>
+                                <button type="button" className="col-md-12 btn btn-primary">Login
+                                </button>
+                            </a>
+
+                            <a href={"/register"}>
+                                <button type="button" className="col-md-12 btn btn-secondary">Register
+                                </button>
+                            </a>
+
+
                         </div>
                     </form>
                 </form>
