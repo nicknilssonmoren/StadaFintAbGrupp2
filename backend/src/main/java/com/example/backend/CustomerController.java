@@ -1,6 +1,8 @@
 package com.example.backend;
 import com.example.backend.Customer;
 import com.example.backend.CustomerService;
+import com.example.backend.auth.models.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class CustomerController {
     }
 
     @GetMapping("/getCustomerDetails")
-    public Customer getCustomer(@RequestParam String documentId ) throws InterruptedException, ExecutionException{
+    public Customer getCustomer(@AuthenticationPrincipal User user, @RequestParam String documentId) throws InterruptedException, ExecutionException {
         return customerService.getCustomerDetails(documentId);
     }
 
