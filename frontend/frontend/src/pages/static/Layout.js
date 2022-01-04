@@ -4,7 +4,7 @@ const Layout = () => {
     return (
         <>
             <nav>
-                        <Link to="/customer">Customer</Link>
+                <Link to="/customer">Customer</Link>
             </nav>
 
             <Outlet />
