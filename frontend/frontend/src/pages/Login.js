@@ -17,16 +17,6 @@ class Login extends Component {
                                aria-describedby="basic-addon1"/>
                     </div>
                     <form>
-                        <div className={"dropdown"}>
-                            <div className="justify-content-center d-flex form-group col-md-20 mt-3 mb-3">
-                                <select accessKey="target" className="form-control" id="list" name="list">
-                                    <option selected value="none">Choose...</option>
-                                    <option value="/adminpage">Admin</option>
-                                    <option value="/customerpage">Customer</option>
-                                    <option value="/employeepage">Employee</option>
-                                </select>
-                            </div>
-                        </div>
                         <div className={"d-flex justify-content-around"}>
                             <a href={"/"}>
                                 <button type="button" className="col-md-12 btn btn-primary">Login

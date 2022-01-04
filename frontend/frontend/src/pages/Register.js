@@ -33,9 +33,10 @@ class Register extends Component {
                             <input className="form-control" id="inputZip" type="text"></input>
                         </div>
                     </div>
-                    <a href={"#"}>
+
+
                         <button className="btn btn-primary mt-3" type="submit">Register</button>
-                    </a>
+
 
                     <a href={"/"}>
                         <button className="btn btn-secondary mt-3" onclick="|window.location.href='/'|"
