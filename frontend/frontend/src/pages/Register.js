@@ -47,7 +47,18 @@ class Register extends Component {
         let password = document.getElementById('inputPassword4');
         let address = document.getElementById('inputAddress');
 
-        console.log("HEJ");
+        if(email.value === ""){
+            alert("You need an email");
+            return;
+        }
+        if(password.value == ""){
+            alert("You need to fill password");
+            return;
+        }
+        if(address.value == ""){
+            alert("You need to fill address");
+            return;
+        }
 
 
         fetch("http://localhost:8080/createCustomer", {
@@ -69,7 +80,16 @@ class Register extends Component {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
+
+        setTimeout(function() {
+            function myFunc() {
+                window.location.href = "/";
+            }
+            myFunc()}, 1000);
+
         };
+
+
 }
 
 export default Register;
