@@ -6,12 +6,14 @@ import Register from "./Register";
 import Customer from "./pages/Customer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
-import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
+import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
     return(
     <BrowserRouter>
+        <Header/>
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Login />} />
@@ -20,6 +22,7 @@ function App() {
                 <Route path="*" element={<NoPage />} />
             </Route>
         </Routes>
+        <Footer/>
     </BrowserRouter>)
 }
 
