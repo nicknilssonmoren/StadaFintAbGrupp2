@@ -19,7 +19,7 @@ public class CustomerController {
         this.customerService  = customerService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/getCustomerDetails")
+    @GetMapping("/getCustomerDetails")
     public Customer getCustomer(@RequestParam String documentId ) throws InterruptedException, ExecutionException{
         return customerService.getCustomerDetails(documentId);
     }

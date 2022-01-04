@@ -6,8 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Customer {
-    String name;
-    Integer age;
-    String gender;
+    String password;
+    String role;
     String documentId;
 }

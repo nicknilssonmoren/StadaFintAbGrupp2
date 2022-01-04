@@ -7,46 +7,69 @@ class Register extends Component {
                 <form>
                     <div className="form-row">
                         <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputEmail4">Username</label>
+                            <label htmlFor="inputEmail4">Email</label>
                             <input className="form-control" id="inputEmail4" placeholder="Email" type="email"></input>
                         </div>
                         <div className="form-group col-md-20 mt-3">
                             <label htmlFor="inputPassword4">Password</label>
-                            <input className="form-control" id="inputPassword4" placeholder="Password" type="password"></input>
+                            <input className="form-control" id="inputPassword4" placeholder="Password"
+                                   type="password"></input>
                         </div>
                     </div>
                     <div className="form-group mt-3">
                         <label htmlFor="inputAddress">Address</label>
-                        <input className="form-control" id="inputAddress" placeholder="1234 Main St" type="text"></input>
-                    </div>
-                    <div className="form-row">
-                        <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputCity">City</label>
-                            <input className="form-control" id="inputCity" type="text"></input>
-                        </div>
-                        <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputState">State</label>
-                            <input className="form-control" id="inputState" type="text"></input>
-                        </div>
-                        <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputZip">Zip</label>
-                            <input className="form-control" id="inputZip" type="text"></input>
-                        </div>
+                        <input className="form-control" id="inputAddress" placeholder="1234 Main St"
+                               type="text"></input>
                     </div>
 
+                    <form>
+                        <div className={"d-flex justify-content-around"}>
 
-                        <button className="btn btn-primary mt-3" type="submit">Register</button>
+                                <button type="button" className=" btn btn-primary" onClick={() => this.postCustomerDetails()}>Register
+                                </button>
 
 
-                    <a href={"/"}>
-                        <button className="btn btn-secondary mt-3" onclick="|window.location.href='/'|"
-                                type="button">Home
-                        </button>
-                    </a>
+                            <a href={"/"}>
+                                <button type="button" className=" btn btn-secondary">Home
+                                </button>
+                            </a>
+
+
+                        </div>
+                    </form>
                 </form>
             </div>
         );
     }
+
+    postCustomerDetails() {
+        let email = document.getElementById('inputEmail4');
+        let password = document.getElementById('inputPassword4');
+        let address = document.getElementById('inputAddress');
+
+        console.log("HEJ");
+
+
+        fetch("http://localhost:8080/createCustomer", {
+            method: 'post',
+            headers: {
+                "Content-type": 'application/json'
+            },
+            body: JSON.stringify({
+                "role": "Customer",
+                "password": password.value,
+                "address": address.value,
+                "documentId": email.value
+            })
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+        };
 }
 
 export default Register;

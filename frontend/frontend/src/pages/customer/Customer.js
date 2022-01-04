@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 function Customer() {
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
-        fetch("http://localhost:8080/getCustomerDetails?documentId=James")
+        fetch("http://localhost:8080/getCustomerDetails?documentId=CsgoDeni")
             .then(req => req.json())
             .then(json => setCustomers(json))
     },[])
@@ -11,10 +11,9 @@ function Customer() {
         <div className="Customer">
             <h3>Get Test</h3>
                 <div>
-                    {customers.name}<br></br>
-                    {customers.age}<br></br>
-                    {customers.gender}<br></br>
                     {customers.documentId}<br></br>
+                    {customers.password}<br></br>
+                    {customers.role}<br></br>
                     {console.log(customers)}
                 </div>
         </div>);

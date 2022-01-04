@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class CustomerService {
 
-    public static final String COL_NAME="customers";
+    public static final String COL_NAME="users";
 
     public String saveCustomerDetails(Customer customer) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
@@ -26,7 +26,7 @@ public class CustomerService {
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(documentId);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        //getAllDocumentIds();
+        getAllDocumentIds();
 
         Customer customer;
 
