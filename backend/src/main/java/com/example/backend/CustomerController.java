@@ -2,10 +2,12 @@ package com.example.backend;
 import com.example.backend.Customer;
 import com.example.backend.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.ExecutionException;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class CustomerController {
 
@@ -17,7 +19,7 @@ public class CustomerController {
         this.customerService  = customerService;
     }
 
-    @GetMapping("/getCustomerDetails")
+    @RequestMapping(method = RequestMethod.GET, path = "/getCustomerDetails")
     public Customer getCustomer(@RequestParam String documentId ) throws InterruptedException, ExecutionException{
         return customerService.getCustomerDetails(documentId);
     }
