@@ -11,13 +11,12 @@ function Customer() {
         <div className="Customer">
             <h3>Get Test</h3>
                 <div>
-                    {customers.name}<br>
-                    {customers.age}<br>
-                    {customers.gender}<br>
-                    {customers.documentId}<br>
+                    {customers.name}<br></br>
+                    {customers.age}<br></br>
+                    {customers.gender}<br></br>
+                    {customers.documentId}<br></br>
                     {console.log(customers)}
                 </div>
-            )}
         </div>);
 }
 
