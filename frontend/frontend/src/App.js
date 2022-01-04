@@ -1,14 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Login from './Login'
+import Login from './pages/Login'
 import React from 'react';
-import Register from "./Register";
-import Customer from "./pages/Customer";
+import Register from "./pages/Register";
+import Customer from "./pages/customer/Customer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
+import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./pages/static/Header";
+import Footer from "./pages/static/Footer";
 
 function App() {
     return(
