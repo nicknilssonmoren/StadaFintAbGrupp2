@@ -26,6 +26,11 @@ public class CustomerController {
         return customerService.getCustomerDetails(documentId);
     }
 
+    @GetMapping("/me")
+    public Customer getMe(@AuthenticationPrincipal User user) throws InterruptedException, ExecutionException {
+        return customerService.getCustomerDetails(user.getUid());
+    }
+
     @PostMapping("/createCustomer")
     public String createCustomer(@RequestBody Customer customer ) throws InterruptedException, ExecutionException {
         return customerService.saveCustomerDetails(customer);
