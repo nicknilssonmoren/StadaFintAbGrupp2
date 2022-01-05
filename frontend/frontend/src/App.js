@@ -9,6 +9,7 @@ import NoPage from "./pages/NoPage";
 import Header from "./pages/static/Header";
 import Footer from "./pages/static/Footer";
 import LoginTest from "./pages/static/LoginTest";
+import MyPage from "./pages/static/MyPage";
 
 function App() {
     return(
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Layout />}>
                 <Route index element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="mypage" element={<MyPage />} />
                 <Route path="logintest" element={<LoginTest />} />
                 <Route path="customer" element={<Customer />} />
                 <Route path="*" element={<NoPage />} />
