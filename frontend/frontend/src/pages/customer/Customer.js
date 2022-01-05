@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 function Customer() {
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
-        fetch("http://localhost:8080/getCustomerDetails?documentId=CsgoDeni")
+        fetch("http://localhost:8080/getCustomerDetails?documentId=deni@gmail.com")
             .then(req => req.json())
             .then(json => setCustomers(json))
     },[])
