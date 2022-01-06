@@ -5,7 +5,8 @@ const Layout = () => {
         <>
             <nav>
                 <Link to="/customer">Customer</Link><br/>
-                <Link to={"/admin"}>Admin</Link>
+                <Link to={"/admin"}>Admin</Link><br/>
+                <Link to={"/employee"}>Employee</Link>
             </nav>
 
             <Outlet />

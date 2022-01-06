@@ -12,6 +12,10 @@ import AdminNavBar from "./pages/admin/AdminNavBar";
 import ManageCustomer from "./pages/admin/ManageCustomer";
 import ManageEmployee from "./pages/admin/ManageEmployee";
 import ManageBooking from "./pages/admin/ManageBooking";
+import EmployeeNavBar from "./pages/employee/EmployeeNavBar";
+import Booked from "./pages/employee/Booked";
+import Canceled from "./pages/employee/Canceled";
+import BookingsDone from "./pages/employee/BookingsDone";
 
 function App() {
     return (
@@ -25,6 +29,10 @@ function App() {
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
                     <Route path="managebooking" element={<ManageBooking/>}/>
+                    <Route path="employee" element={<EmployeeNavBar/>}/>
+                    <Route path="cleaningbooked" element={<Booked/>}/>
+                    <Route path="cleaningcancel" element={<Canceled/>}/>
+                    <Route path="cleaningdone" element={<BookingsDone/>}/>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
