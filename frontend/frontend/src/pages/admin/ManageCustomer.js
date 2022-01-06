@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import AdminPage from "./AdminPage";
+import AdminNavBar from "./AdminNavBar";
 
 class ManageCustomer extends Component {
 
     render() {
         return (
             <div>
-                <AdminPage/>
+                <AdminNavBar/>
                 <h1 className={"text-center pt-4"}>Kundlista</h1>
                 <div className={"justify-content-center d-flex pt-4"}>
                     <table className="table w-75 p-3 ">
