@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Login from './pages/Login'
 import React from 'react';
 import Register from "./pages/Register";
-import Customer from "./pages/customer/Customer";
+import Customer from "./pages/Customer/Customer";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
@@ -12,6 +12,10 @@ import AdminNavBar from "./pages/admin/AdminNavBar";
 import ManageCustomer from "./pages/admin/ManageCustomer";
 import ManageEmployee from "./pages/admin/ManageEmployee";
 import ManageBooking from "./pages/admin/ManageBooking";
+import CustomerNavBar from "./pages/Customers/CustomerNavBar";
+import Bookings from "./pages/Customers/Bookings";
+import BookingHistory from "./pages/Customers/BookingHistory";
+import ShowBookings from "./pages/Customers/ShowBookings";
 
 function App() {
     return (
@@ -25,6 +29,10 @@ function App() {
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
                     <Route path="managebooking" element={<ManageBooking/>}/>
+                    <Route path="Customers" element={<CustomerNavBar/>}/>
+                    <Route path="bookings" element={<Bookings/>}/>
+                    <Route path="bookingHistory" element={<BookingHistory/>}/>
+                    <Route path="showBookings" element={<ShowBookings/>}/>
                     <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
