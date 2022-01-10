@@ -21,17 +21,44 @@ initializeApp(firebaseConfig);
 const register = async values => {
 
     try {
-        console.log(values);
+        //console.log(values);
         const {email, password} = values;
         console.log(email, password);
         const auth = getAuth();
-        console.log(auth);
+        //console.log(auth);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
-        console.log(idToken);
-        console.log(userCredential);
+
+        fetch('http://localhost:8080/createCustomer', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json'
+            },
+            body: JSON.stringify({
+                "address": "Bond street 3",
+                "documentId": email.value,
+                "role": "Customer"
+            })
+
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+
+
+        //window.location = '/mypage';
+        //const me = await response.json();
+        //console.log(me);
+        //console.log(idToken);
+        //console.log(userCredential);
         alert("Your account has successfully been created.");
-        window.location = '/mypage';
+        //postCustomerDetails(email);
+        //window.location = '/mypage';
     }
     catch (e){
         alert("Email is already in use.");
@@ -40,7 +67,7 @@ const register = async values => {
 
 }
 
-class LoginTest extends Component {
+class Register extends Component {
 
     state = {
         email: "",
@@ -64,4 +91,4 @@ class LoginTest extends Component {
     }
 }
 
-export default LoginTest;
+export default Register;
