@@ -57,7 +57,8 @@ class Login extends Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
-        return (
+        return (<>
+            <h3 className="justify-content-center d-flex">Login</h3>
             <div className="justify-content-center d-flex">
                 <div>
                     <label>Email</label>
@@ -67,6 +68,7 @@ class Login extends Component {
                     <button onClick={ () => login(this.state)} id={"button"}>Login</button>
                 </div>
             </div>
+            </>
         );
     }
 }
