@@ -30,9 +30,22 @@ const login = async values => {
             'Authorization': 'Bearer ' + idToken
         }
     });
-    window.location = '/mypage';
     const me = await response.json();
-    console.log(me);
+    console.log(me.role);
+    switch(me.role) {
+        case "Customer":
+            window.location = '/customers';
+            break;
+        case "Employee":
+            window.location = '/employee';
+            break;
+        case "Admin":
+            window.location = '/admin';
+            break;
+        default:
+        window.location = '/';
+    }
+
 }
 
 class Login extends Component {

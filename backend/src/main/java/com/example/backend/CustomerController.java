@@ -21,11 +21,6 @@ public class CustomerController {
         this.customerService  = customerService;
     }
 
-    @GetMapping("/getCustomers")
-    public Customer getTihi(@RequestParam String documentId) throws InterruptedException, ExecutionException {
-        return customerService.getCustomerDetails(documentId);
-    }
-
     @GetMapping("/getCustomerDetails")
     public Customer getCustomer(@AuthenticationPrincipal User user, @RequestParam String documentId) throws InterruptedException, ExecutionException {
         return customerService.getCustomerDetails(documentId);
@@ -42,7 +37,7 @@ public class CustomerController {
     }
 
     @PostMapping("/createCustomer")
-    public String createCustomer(@RequestBody Customer customer ) throws InterruptedException, ExecutionException {
+    public String createCustomer(@AuthenticationPrincipal User user, @RequestBody Customer customer ) throws InterruptedException, ExecutionException {
         return customerService.saveCustomerDetails(customer);
     }
 

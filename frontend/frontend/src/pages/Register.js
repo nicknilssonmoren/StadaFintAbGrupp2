@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {initializeApp} from "firebase/app";
 import {getIdToken, getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import {Route} from "react-router-dom";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -21,17 +20,39 @@ initializeApp(firebaseConfig);
 const register = async values => {
 
     try {
-        console.log(values);
-        const {email, password} = values;
+        const {email, password, address} = values;
         console.log(email, password);
         const auth = getAuth();
-        console.log(auth);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
-        console.log(idToken);
-        console.log(userCredential);
+        const userId = userCredential.user.uid;
+
+        const response = await fetch('http://localhost:8080/createCustomer', {
+            mode: 'cors',
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
+            },
+            body: JSON.stringify({
+                "address": address,
+                "documentId": userId,
+                "email": email,
+                "role": "Customer"
+            })
+
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+
         alert("Your account has successfully been created.");
-        window.location = '/mypage';
+        window.location = '/';
     }
     catch (e){
         alert("Email is already in use.");
@@ -40,11 +61,12 @@ const register = async values => {
 
 }
 
-class LoginTest extends Component {
+class Register extends Component {
 
     state = {
         email: "",
-        password: ""
+        password: "",
+        address: "",
     };
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -57,6 +79,8 @@ class LoginTest extends Component {
                     <input name="email" type="text" onChange={this.handleChange} />
                     <label>Password</label>
                     <input name="password" type="password" onChange={this.handleChange} />
+                    <label>Address</label>
+                    <input name="address" type="text" onChange={this.handleChange} />
                     <button onClick={ () => register(this.state)} id={"button"}>register</button>
                 </div>
             </div>
@@ -64,4 +88,4 @@ class LoginTest extends Component {
     }
 }
 
-export default LoginTest;
+export default Register;
