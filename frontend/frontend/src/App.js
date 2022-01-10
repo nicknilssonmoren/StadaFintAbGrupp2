@@ -2,12 +2,43 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Login from './pages/Login'
 import Register from "./pages/Register";
-import Customer from "./pages/customer/Customer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Customer from "./pages/Customer/Customer";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
-import Header from "./pages/static/Header";
 import Footer from "./pages/static/Footer";
+import AdminNavBar from "./pages/admin/AdminNavBar";
+import ManageCustomer from "./pages/admin/ManageCustomer";
+import ManageEmployee from "./pages/admin/ManageEmployee";
+import ManageBooking from "./pages/admin/ManageBooking";
+import CustomerNavBar from "./pages/Customers/CustomerNavBar";
+import Bookings from "./pages/Customers/Bookings";
+import BookingHistory from "./pages/Customers/BookingHistory";
+import ShowBookings from "./pages/Customers/ShowBookings";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Login/>}/>
+                    <Route path="register" element={<Register/>}/>
+                    <Route path="customer" element={<Customer/>}/>
+                    <Route path="admin" element={<AdminNavBar/>}/>
+                    <Route path="managecustomer" element={<ManageCustomer/>}/>
+                    <Route path="manageemployee" element={<ManageEmployee/>}/>
+                    <Route path="managebooking" element={<ManageBooking/>}/>
+                    <Route path="Customers" element={<CustomerNavBar/>}/>
+                    <Route path="bookings" element={<Bookings/>}/>
+                    <Route path="bookingHistory" element={<BookingHistory/>}/>
+                    <Route path="showBookings" element={<ShowBookings/>}/>
+                    <Route path="*" element={<NoPage/>}/>
+                </Route>
+            </Routes>
+            <Footer/>
+        </BrowserRouter>
+    )
+
 import LoginTest from "./pages/static/LoginTest";
 import MyPage from "./pages/static/MyPage";
 

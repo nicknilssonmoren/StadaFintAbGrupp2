@@ -1,0 +1,22 @@
+.adminlink {
+    text-decoration: none;
+    color: gray;
+    font-weight: bold;
+}
+
+.adminlink:hover {
+    color: #0088cc;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.active {
+    color: #0088cc;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.inactive {
+    color: lightgray;
+    text-decoration: none;
+}
