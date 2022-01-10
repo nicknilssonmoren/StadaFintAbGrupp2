@@ -45,7 +45,6 @@ public class CustomerController {
     public String updateCustomer(@RequestBody Customer customer ) throws InterruptedException, ExecutionException {
         return customerService.updateCustomerDetails(customer);
     }
-
     @DeleteMapping("/deleteCustomer")
     public String deleteCustomer(@RequestParam String documentId){
         return customerService.deleteCustomer(documentId);
