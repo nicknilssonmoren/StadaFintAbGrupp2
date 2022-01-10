@@ -31,7 +31,7 @@ const register = async values => {
         console.log(idToken);
         console.log(userCredential);
         alert("Your account has successfully been created.");
-        window.location = '/logintest';
+        window.location = '/mypage';
     }
     catch (e){
         alert("Email is already in use.");
