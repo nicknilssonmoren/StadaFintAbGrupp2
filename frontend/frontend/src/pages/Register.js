@@ -29,7 +29,7 @@ const register = async values => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
 
-        fetch('http://localhost:8080/createCustomer', {
+        const response = await fetch('http://localhost:8080/createCustomer', {
             mode: 'cors',
             method: 'post',
             headers: {
@@ -39,7 +39,7 @@ const register = async values => {
             },
             body: JSON.stringify({
                 "address": "Bond street 3",
-                "documentId": email.value,
+                "documentId": "MAGICTESTDOCUMENTID",
                 "role": "Customer"
             })
 
@@ -51,6 +51,10 @@ const register = async values => {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
+
+
+        //const me = await response.json();
+        //console.log(me);
 
 
         //window.location = '/mypage';
