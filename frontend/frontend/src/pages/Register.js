@@ -72,7 +72,8 @@ class Register extends Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     render() {
-        return (
+        return (<>
+            <h3 className="justify-content-center d-flex">Register</h3>
             <div className="justify-content-center d-flex">
                 <div>
                     <label>Email</label>
@@ -81,9 +82,12 @@ class Register extends Component {
                     <input name="password" type="password" onChange={this.handleChange} />
                     <label>Address</label>
                     <input name="address" type="text" onChange={this.handleChange} />
+                    <br />
                     <button onClick={ () => register(this.state)} id={"button"}>register</button>
+                    <p>Already have an account?<a href={"/"}>Login</a></p>
                 </div>
             </div>
+            </>
         );
     }
 }
