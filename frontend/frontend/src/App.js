@@ -9,6 +9,7 @@ import NoPage from "./pages/NoPage";
 import Header from "./pages/static/Header";
 import Footer from "./pages/static/Footer";
 import LoginTest from "./pages/static/LoginTest";
+import RegistrationTest from "./pages/static/RegistrationTest";
 import MyPage from "./pages/static/MyPage";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="register" element={<Register />} />
                 <Route path="mypage" element={<MyPage />} />
                 <Route path="logintest" element={<LoginTest />} />
+                <Route path="registrationtest" element={<RegistrationTest />} />
                 <Route path="customer" element={<Customer />} />
                 <Route path="*" element={<NoPage />} />
             </Route>
