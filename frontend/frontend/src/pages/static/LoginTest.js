@@ -29,6 +29,7 @@ const login = async values => {
             'Authorization': 'Bearer ' + idToken
         }
     });
+    window.location = '/mypage';
     const me = await response.json();
     console.log(me);
 }
