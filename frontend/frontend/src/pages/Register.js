@@ -30,10 +30,12 @@ const register = async values => {
         const idToken = await userCredential.user.getIdToken();
 
         fetch('http://localhost:8080/createCustomer', {
+            mode: 'cors',
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + idToken,
-                "Content-type": 'application/json'
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
             },
             body: JSON.stringify({
                 "address": "Bond street 3",
