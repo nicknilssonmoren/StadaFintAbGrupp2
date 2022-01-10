@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {initializeApp} from "firebase/app";
 import {getIdToken, getAuth, createUserWithEmailAndPassword} from "firebase/auth";
-import {Route} from "react-router-dom";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -21,13 +20,12 @@ initializeApp(firebaseConfig);
 const register = async values => {
 
     try {
-        //console.log(values);
-        const {email, password} = values;
+        const {email, password, address} = values;
         console.log(email, password);
         const auth = getAuth();
-        //console.log(auth);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
+        const userId = userCredential.user.uid;
 
         const response = await fetch('http://localhost:8080/createCustomer', {
             mode: 'cors',
@@ -38,8 +36,9 @@ const register = async values => {
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             },
             body: JSON.stringify({
-                "address": "Bond street 3",
-                "documentId": "MAGICTESTDOCUMENTID",
+                "address": address,
+                "documentId": userId,
+                "email": email,
                 "role": "Customer"
             })
 
@@ -52,19 +51,8 @@ const register = async values => {
                 console.log('Request failed', error);
             });
 
-
-        //const me = await response.json();
-        //console.log(me);
-
-
-        //window.location = '/mypage';
-        //const me = await response.json();
-        //console.log(me);
-        //console.log(idToken);
-        //console.log(userCredential);
         alert("Your account has successfully been created.");
-        //postCustomerDetails(email);
-        //window.location = '/mypage';
+        window.location = '/';
     }
     catch (e){
         alert("Email is already in use.");
@@ -77,7 +65,8 @@ class Register extends Component {
 
     state = {
         email: "",
-        password: ""
+        password: "",
+        address: "",
     };
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -90,6 +79,8 @@ class Register extends Component {
                     <input name="email" type="text" onChange={this.handleChange} />
                     <label>Password</label>
                     <input name="password" type="password" onChange={this.handleChange} />
+                    <label>Address</label>
+                    <input name="address" type="text" onChange={this.handleChange} />
                     <button onClick={ () => register(this.state)} id={"button"}>register</button>
                 </div>
             </div>
