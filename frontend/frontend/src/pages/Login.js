@@ -65,7 +65,11 @@ class Login extends Component {
                     <input name="email" type="text" onChange={this.handleChange} />
                     <label>Password</label>
                     <input name="password" type="password" onChange={this.handleChange} />
+                    <br />
+                    <br />
                     <button onClick={ () => login(this.state)} id={"button"}>Login</button>
+                    <br />
+                    <p>Dont have an account yet? <a href={"/register"}> Register</a></p>
                 </div>
             </div>
             </>
