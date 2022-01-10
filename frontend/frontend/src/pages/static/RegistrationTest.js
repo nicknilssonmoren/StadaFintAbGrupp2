@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {initializeApp} from "firebase/app";
-import {signInWithEmailAndPassword, getIdToken, getAuth} from "firebase/auth";
+import {getIdToken, getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {Route} from "react-router-dom";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -17,21 +18,26 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-const login = async values => {
-    console.log(values);
-    const { email, password } = values;
-    console.log(email, password);
-    const auth = getAuth();
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const idToken = await userCredential.user.getIdToken();
-    const response = await fetch('http://localhost:8080/me', {
-        headers: {
-            'Authorization': 'Bearer ' + idToken
-        }
-    });
-    window.location = '/mypage';
-    const me = await response.json();
-    console.log(me);
+const register = async values => {
+
+    try {
+        console.log(values);
+        const {email, password} = values;
+        console.log(email, password);
+        const auth = getAuth();
+        console.log(auth);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const idToken = await userCredential.user.getIdToken();
+        console.log(idToken);
+        console.log(userCredential);
+        alert("Your account has successfully been created.");
+        window.location = '/mypage';
+    }
+    catch (e){
+        alert("Email is already in use.");
+    }
+
+
 }
 
 class LoginTest extends Component {
@@ -51,7 +57,7 @@ class LoginTest extends Component {
                     <input name="email" type="text" onChange={this.handleChange} />
                     <label>Password</label>
                     <input name="password" type="password" onChange={this.handleChange} />
-                    <button onClick={ () => login(this.state)} id={"button"}>Login</button>
+                    <button onClick={ () => register(this.state)} id={"button"}>register</button>
                 </div>
             </div>
         );
