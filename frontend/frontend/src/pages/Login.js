@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {initializeApp} from "firebase/app";
 import {signInWithEmailAndPassword, getIdToken, getAuth} from "firebase/auth";
+import Header from "./static/Header";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -45,8 +46,9 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="justify-content-center d-flex">
-                <div>
+            <div >
+                <Header/>
+                <div className="justify-content-center d-flex">
                     <label>Email</label>
                     <input name="email" type="text" onChange={this.handleChange} />
                     <label>Password</label>
