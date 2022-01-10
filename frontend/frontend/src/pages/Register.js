@@ -1,77 +1,47 @@
 import React, {Component} from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import {initializeApp} from "firebase/app";
+import {getIdToken, getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
-class Register extends Component {
-    render() {
-        return (
-            <div className="justify-content-center d-flex">
-                <form>
-                    <div className="form-row">
-                        <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputEmail4">Email</label>
-                            <input className="form-control" id="inputEmail4" placeholder="Email" type="email"></input>
-                        </div>
-                        <div className="form-group col-md-20 mt-3">
-                            <label htmlFor="inputPassword4">Password</label>
-                            <input className="form-control" id="inputPassword4" placeholder="Password"
-                                   type="password"></input>
-                        </div>
-                    </div>
-                    <div className="form-group mt-3">
-                        <label htmlFor="inputAddress">Address</label>
-                        <input className="form-control" id="inputAddress" placeholder="1234 Main St"
-                               type="text"></input>
-                    </div>
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDDBpYTJTladLYupRNWzFeB-9xdOVTFzpQ",
+    authDomain: "stadafint-4be35.firebaseapp.com",
+    databaseURL: "https://stadafint-4be35-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "stadafint-4be35",
+    storageBucket: "stadafint-4be35.appspot.com",
+    messagingSenderId: "679439977501",
+    appId: "1:679439977501:web:1d2aa173ac6634773b4af4",
+    measurementId: "G-1WMLRLZFV0"
+};
 
-                    <form>
-                        <div className={"d-flex justify-content-around"}>
+initializeApp(firebaseConfig);
 
-                                <button type="button" className=" btn btn-primary" onClick={() => this.postCustomerDetails()}>Register
-                                </button>
+const register = async values => {
 
+    try {
+        const {email, password, address} = values;
+        console.log(email, password);
+        const auth = getAuth();
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const idToken = await userCredential.user.getIdToken();
+        const userId = userCredential.user.uid;
 
-                            <a href={"/"}>
-                                <button type="button" className=" btn btn-secondary">Home
-                                </button>
-                            </a>
-
-
-                        </div>
-                    </form>
-                </form>
-            </div>
-        );
-    }
-
-    postCustomerDetails() {
-        let email = document.getElementById('inputEmail4');
-        let password = document.getElementById('inputPassword4');
-        let address = document.getElementById('inputAddress');
-
-        if(email.value === ""){
-            alert("You need an email");
-            return;
-        }
-        if(password.value == ""){
-            alert("You need to fill password");
-            return;
-        }
-        if(address.value == ""){
-            alert("You need to fill address");
-            return;
-        }
-
-
-        fetch("http://localhost:8080/createCustomer", {
+        const response = await fetch('http://localhost:8080/createCustomer', {
+            mode: 'cors',
             method: 'post',
             headers: {
-                "Content-type": 'application/json'
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
             },
             body: JSON.stringify({
-                "role": "Customer",
-                "password": password.value,
-                "address": address.value,
-                "documentId": email.value
+                "address": address,
+                "documentId": userId,
+                "email": email,
+                "role": "Customer"
             })
+
         })
             //.then(json)
             .then(function (data) {
@@ -81,15 +51,41 @@ class Register extends Component {
                 console.log('Request failed', error);
             });
 
-        setTimeout(function() {
-            function myFunc() {
-                window.location.href = "/";
-            }
-            myFunc()}, 1000);
+        alert("Your account has successfully been created.");
+        window.location = '/';
+    }
+    catch (e){
+        alert("Email is already in use.");
+    }
 
-        };
 
+}
 
+class Register extends Component {
+
+    state = {
+        email: "",
+        password: "",
+        address: "",
+    };
+
+    handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+    render() {
+        return (
+            <div className="justify-content-center d-flex">
+                <div>
+                    <label>Email</label>
+                    <input name="email" type="text" onChange={this.handleChange} />
+                    <label>Password</label>
+                    <input name="password" type="password" onChange={this.handleChange} />
+                    <label>Address</label>
+                    <input name="address" type="text" onChange={this.handleChange} />
+                    <button onClick={ () => register(this.state)} id={"button"}>register</button>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Register;
