@@ -2,13 +2,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Login from './pages/Login'
 import Register from "./pages/Register";
-import Customer from "./pages/Customer/Customer";
+import GetCustomerMall from "./pages/Backend Mall/GetCustomerMall";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
 import Footer from "./pages/static/Footer";
-import LoginTest from "./pages/static/LoginTest";
-import RegistrationTest from "./pages/static/RegistrationTest";
 import MyPage from "./pages/static/MyPage";
 import AdminNavBar from "./pages/admin/AdminNavBar";
 import ManageCustomer from "./pages/admin/ManageCustomer";
@@ -30,12 +28,10 @@ function App() {
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
-                    <Route path="customer" element={<Customer/>}/>
+                    <Route path="customer" element={<GetCustomerMall/>}/>
                     <Route path="admin" element={<AdminNavBar/>}/>
                     <Route path="mypage" element={<MyPage />} />
-                    <Route path="logintest" element={<LoginTest />} />
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
-                    <Route path="registrationtest" element={<RegistrationTest />} />
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
                     <Route path="managebooking" element={<ManageBooking/>}/>
                     <Route path="employee" element={<EmployeeNavBar/>}/>

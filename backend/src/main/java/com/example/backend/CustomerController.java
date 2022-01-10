@@ -21,6 +21,11 @@ public class CustomerController {
         this.customerService  = customerService;
     }
 
+    @GetMapping("/getCustomers")
+    public Customer getTihi(@RequestParam String documentId) throws InterruptedException, ExecutionException {
+        return customerService.getCustomerDetails(documentId);
+    }
+
     @GetMapping("/getCustomerDetails")
     public Customer getCustomer(@AuthenticationPrincipal User user, @RequestParam String documentId) throws InterruptedException, ExecutionException {
         return customerService.getCustomerDetails(documentId);

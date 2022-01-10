@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 
-function Customer() {
+function GetCustomerMall() {
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
-        fetch("http://localhost:8080/getCustomerDetails?documentId=deni@gmail.com")
+        fetch("http://localhost:8080/getCustomerDetails?documentId=lava@gmail.com")
             .then(req => req.json())
             .then(json => setCustomers(json))
     },[])
@@ -19,4 +19,4 @@ function Customer() {
         </div>);
 }
 
-export default Customer;
+export default GetCustomerMall;
