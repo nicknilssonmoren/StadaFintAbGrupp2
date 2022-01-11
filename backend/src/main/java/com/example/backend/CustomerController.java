@@ -1,12 +1,11 @@
 package com.example.backend;
-import com.example.backend.Customer;
-import com.example.backend.CustomerService;
 import com.example.backend.auth.models.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -49,4 +48,10 @@ public class CustomerController {
     public String deleteCustomer(@RequestParam String documentId){
         return customerService.deleteCustomer(documentId);
     }
+
+    @GetMapping("/getAllCustomers")
+    public List getAllCustomers(@AuthenticationPrincipal User user) throws InterruptedException, ExecutionException {
+        return customerService.getAllCustomers();
+    }
+
 }

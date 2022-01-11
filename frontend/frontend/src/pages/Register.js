@@ -26,6 +26,7 @@ const register = async values => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
         const userId = userCredential.user.uid;
+        console.log(idToken);
 
         const response = await fetch('http://localhost:8080/createCustomer', {
             mode: 'cors',

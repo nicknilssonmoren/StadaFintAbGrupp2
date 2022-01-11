@@ -52,6 +52,20 @@ public class CustomerService {
         return customer;
     }
 
+    public List getAllCustomers() throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection(COL_NAME).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List customers = new ArrayList<>();
+        for (QueryDocumentSnapshot document : documents) {
+            System.out.println(document.getData());
+            //System.out.println(document.getId() + " => " + document.toObject(Customer.class));
+            customers.add(document.getData());
+        }
+        System.out.println(customers);
+        return customers;
+    }
+
     public String updateCustomerDetails(Customer person) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(person.getDocumentId()).set(person);
