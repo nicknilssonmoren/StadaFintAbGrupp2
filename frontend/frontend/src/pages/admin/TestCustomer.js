@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import AdminNavBar from "./AdminNavBar";
 
-const idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MDZmMzc1MjI0N2ZjZjk0Y2JlNWQyZDZiNTlmYThhMmJhYjFlYzIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc3RhZGFmaW50LTRiZTM1IiwiYXVkIjoic3RhZGFmaW50LTRiZTM1IiwiYXV0aF90aW1lIjoxNjQxOTA4OTkxLCJ1c2VyX2lkIjoiVzRsVXdDNlNDaWdEajlDdHFRZW5oSXFSVGFnMiIsInN1YiI6Ilc0bFV3QzZTQ2lnRGo5Q3RxUWVuaElxUlRhZzIiLCJpYXQiOjE2NDE5MDg5OTEsImV4cCI6MTY0MTkxMjU5MSwiZW1haWwiOiJoZWhlQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJoZWhlQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.Ad4dfrqDUGafwul_i4r6WxF8F98yrH_Zw3zA-e0DlWPXJsbxHwXgvzfDiHwvuK0LeeaV5NBNH6RRnV9T2MRvbPbMzac2qfvdHNiG0YfTZmp6bKx2KqJo3Vn60ZGkjMUTgfuy2SzhyforScx_qoVf_XwuWNJ-8GLdnSfikt53GlptKlVMyihzCUq20I9U-0XqscFIO3gsYHY5iwoiOVqXQXgFI-_WtPGCIqCIjKigLSsXUWezrLTFvEynpKlrRMjQW9v03sEzYP-eIIytzAMlJ6f7ZtA8Ourv5N1CPofCm0DWKhFVdjIlOx29BSKPmxXooMt0zOdXchqYKct9fZP8MQ"
-
+const idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MDZmMzc1MjI0N2ZjZjk0Y2JlNWQyZDZiNTlmYThhMmJhYjFlYzIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc3RhZGFmaW50LTRiZTM1IiwiYXVkIjoic3RhZGFmaW50LTRiZTM1IiwiYXV0aF90aW1lIjoxNjQxOTEyNTk1LCJ1c2VyX2lkIjoiOHpXQkdJN0tLdGFIS0dWWkc0Ym5ESUQzb0NFMiIsInN1YiI6Ijh6V0JHSTdLS3RhSEtHVlpHNGJuRElEM29DRTIiLCJpYXQiOjE2NDE5MTI1OTUsImV4cCI6MTY0MTkxNjE5NSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdDFAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.NZvdRgZYonIH3E4Oan6vamixSQ2GvPH4PcNQ9eevT2b2pgAdbtq88HYvBYWLAR28iUFWmjjoBfvYinMJohoEbe3hEcSfhjMudp7bLlBbOsWXIbhag1Gknrad9MXh9GAJ3tOzhKb0_Y1Z3g_9jngn7KrHXa7b43cZRA9mn3jIirHK3UJF1kWpujRYK4DCX3qAklGiWEFIcXUr7JVn8gL2YX6y_ccqR6VGSITbNgWSDUOdZI80e8hcW43GmstTPodJsBWX-w7ehuSYM82XKgsGwTmHkI5xICjD4LnvczMrNjJx47FBqIZ5ypZJWVQ_IcnS7xE8S-XSyYdVmKGp4d48Yg"
 function TestCustomer() {
-    let customersArray = [];
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
         fetch('http://localhost:8080/getAllCustomers', {
@@ -17,22 +15,14 @@ function TestCustomer() {
     },[])
 
     function getAllCustomers() {
-        console.log("HELLO");
-        for(let customer of customers){
-            if(customer.role == "Customer"){
-                customersArray.push(customer);
-                console.log(customersArray);
-            }
-        }
-        for(let i = 0; i < customersArray.length; i++){
-            console.log(customersArray[i]);
-            return (
-                <tr>
-                    <th scope="row">{customersArray[i].documentId}</th>
-                    <td>{customersArray[i].email}</td>
-                    <td>{customersArray[i].address}</td>
-                </tr>)
-        }
+        console.log(customers);
+        return customers.filter(customer => customer.role == "Customer")
+            .map(customer => (
+            <tr key={customer.documentId}>
+                <th scope="row">{customer.documentId}</th>
+                <td>{customer.email}</td>
+                <td>{customer.address}</td>
+            </tr>))
     }
 
     return (<>
@@ -50,11 +40,6 @@ function TestCustomer() {
                     </thead>
                     <tbody>
                     {getAllCustomers()}
-                    <tr>
-                        <th scope="row">{customersArray.documentId}</th>
-                        <td>{customersArray.email}</td>
-                        <td>{customersArray.address}</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
