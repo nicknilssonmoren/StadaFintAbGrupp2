@@ -20,6 +20,7 @@ import CustomerNavBar from "./pages/Customers/CustomerNavBar";
 import Bookings from "./pages/Customers/Bookings";
 import BookingHistory from "./pages/Customers/BookingHistory";
 import ShowBookings from "./pages/Customers/ShowBookings";
+import AcceptBooking from "./pages/employee/AcceptBooking";
 
 function App() {
     return (
@@ -38,6 +39,7 @@ function App() {
                     <Route path="cleaningbooked" element={<Booked/>}/>
                     <Route path="cleaningcancel" element={<Canceled/>}/>
                     <Route path="cleaningdone" element={<BookingsDone/>}/>
+                    <Route path="acceptbooking" element={<AcceptBooking/>}/>
                     <Route path="Customers" element={<CustomerNavBar/>}/>
                     <Route path="bookings" element={<Bookings/>}/>
                     <Route path="bookingHistory" element={<BookingHistory/>}/>

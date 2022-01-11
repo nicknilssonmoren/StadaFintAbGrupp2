@@ -9,7 +9,9 @@ class EmployeeNavBar extends Component {
                 <Header/>
                 <div className={"container d-flex justify-content-evenly mt-3"}>
                     <NavLink to={"/cleaningbooked"} activeClassName={"active"} exact={true}
-                             className={"adminlink"}>Tilldelade städningar </NavLink>
+                             className={"adminlink"}>Accepterade tilldelade städningar </NavLink>
+                    <NavLink to={"/acceptbooking"} activeClassName={"active"} exact={true}
+                             className={"adminlink"}>Inkommande tilldelade städningar </NavLink>
                     <NavLink to={"/cleaningcancel"} activeClassName={"active"} exact={true}
                              className={"adminlink"}>Avbokade städningar</NavLink>
                     <NavLink to={"/cleaningdone"} activeClassName={"active"} exact={true}
