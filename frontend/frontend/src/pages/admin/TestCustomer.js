@@ -6,7 +6,7 @@ const idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MDZmMzc1MjI0N2ZjZjk0Y2JlNWQyZDZ
 function TestCustomer() {
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:8080/getCustomerDetails?documentId=p0D4ok0ETkSvtq7hqX64UFLS3eC2', {
+        fetch('http://localhost:8080/getAllCustomers', {
             headers: {
                 'Authorization': 'Bearer ' + idToken
             }
@@ -14,18 +14,40 @@ function TestCustomer() {
             .then(req => req.json())
             .then(json => setCustomers(json))
     },[])
-    return (
-        <div className="TestCustomer">
-            <h3>Get Test</h3>
-            <div>
-                {console.log(typeof customers)}
-                {customers.email}<br></br>
-                {customers.documentId}<br></br>
-                {customers.address}<br></br>
-                {customers.role}<br></br>
-                {console.log(customers.role)}
+    return (<>
+        <div>
+            <AdminNavBar/>
+            <h1 className={"text-center pt-4"}>Kundlista</h1>
+            <div className={"justify-content-center d-flex pt-4"}>
+                <table className="table w-75 p-3 ">
+                    <thead>
+                    <tr>
+                        <th scope="col">Kund ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Adress</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{customers[1].documentId}</th>
+                        <td>{customers[1].email}</td>
+                        <td>{customers[1].address}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{customers[2].documentId}</th>
+                        <td>{customers[2].email}</td>
+                        <td>{customers[2].address}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{customers[3].documentId}</th>
+                        <td>{customers[3].email}</td>
+                        <td>{customers[3].address}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>);
+        </div>
+        </>);
 }
 
 export default TestCustomer;
