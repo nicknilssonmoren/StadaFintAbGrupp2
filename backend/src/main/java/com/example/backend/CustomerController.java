@@ -31,8 +31,13 @@ public class CustomerController {
         return customerService.getCustomerDetails(user.getUid());
     }
 
+    @GetMapping("/reggy")
+    public Customer getReggy(@AuthenticationPrincipal User user) throws InterruptedException, ExecutionException {
+        return customerService.getCustomerDetails(user.getUid());
+    }
+
     @PostMapping("/createCustomer")
-    public String createCustomer(@RequestBody Customer customer ) throws InterruptedException, ExecutionException {
+    public String createCustomer(@AuthenticationPrincipal User user, @RequestBody Customer customer ) throws InterruptedException, ExecutionException {
         return customerService.saveCustomerDetails(customer);
     }
 
@@ -40,7 +45,6 @@ public class CustomerController {
     public String updateCustomer(@RequestBody Customer customer ) throws InterruptedException, ExecutionException {
         return customerService.updateCustomerDetails(customer);
     }
-
     @DeleteMapping("/deleteCustomer")
     public String deleteCustomer(@RequestParam String documentId){
         return customerService.deleteCustomer(documentId);

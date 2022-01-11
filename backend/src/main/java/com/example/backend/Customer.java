@@ -8,5 +8,6 @@ import lombok.Setter;
 public class Customer {
     String role;
     String address;
+    String email;
     String documentId;
 }
