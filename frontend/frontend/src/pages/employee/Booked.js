@@ -17,15 +17,11 @@ class Booked extends Component {
                                 praesentium totam! Assumenda autem debitis doloremque earum enim ipsum iusto libero
                                 molestias nemo numquam odit quaerat, veritatis, vero voluptatem.</p>
                             <div className={"d-flex justify-content-end"}>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio3" value="option3"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio3">Utförd</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio4" value="option4"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio4">Icke utförd</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                                        Utförd
+                                    </label>
                                 </div>
                             </div>
                         </a>
@@ -38,15 +34,12 @@ class Booked extends Component {
                                 culpa, cupiditate dicta dolor ducimus, enim est facere ipsum labore, laudantium magni
                                 neque obcaecati praesentium quam quo repudiandae saepe sunt voluptatum.</p>
                             <div className={"d-flex justify-content-end"}>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio1" value="option1"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio1">Utförd</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio2" value="option2"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio2">Icke utförd</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value=""
+                                           id="flexCheckDefault-1"/>
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                                        Utförd
+                                    </label>
                                 </div>
                             </div>
                         </a>
