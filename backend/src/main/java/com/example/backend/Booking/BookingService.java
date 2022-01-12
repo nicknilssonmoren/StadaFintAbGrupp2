@@ -1,5 +1,6 @@
-package com.example.backend;
+package com.example.backend.Booking;
 
+import com.example.backend.Customer.Customer;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -9,75 +10,69 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-//CRUD operations
 @Service
-public class CustomerService {
+public class BookingService {
 
-    public static final String COL_NAME="users";
+    public static final String COL_NAME="bookings";
 
-    public String saveCustomerDetails(Customer customer) throws InterruptedException, ExecutionException {
+    public String saveBookingDetails(Booking booking) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(customer.getDocumentId()).set(customer);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(booking.getDocumentId()).set(booking);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public Customer getCustomerDetails(String documentId) throws InterruptedException, ExecutionException {
+    public Booking getBookingDetails(String documentId) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(documentId);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
-        getAllDocumentIds();
+        getAllBookingIds();
 
-        Customer customer;
+        Booking booking;
 
         if(document.exists()) {
-            customer = document.toObject(Customer.class);
-            return customer;
+            booking = document.toObject(Booking.class);
+            return booking;
         }else {
             return null;
         }
     }
 
-    public List getAllDocumentIds() throws ExecutionException, InterruptedException {
+    public List getAllBookingIds() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        //asynchronously retrieve all documents
         ApiFuture<QuerySnapshot> future = dbFirestore.collection(COL_NAME).get();
-        // future.get() blocks on response
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        List customer = new ArrayList<>();
+        List bookings = new ArrayList<>();
         for (QueryDocumentSnapshot document : documents) {
             System.out.println(document.getId() + " => " + document.toObject(Customer.class));
-            customer.add(document);
+            bookings.add(document);
         }
-        return customer;
+        return bookings;
     }
 
-    public List getAllCustomers() throws ExecutionException, InterruptedException {
+    public List getAllBookings() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection(COL_NAME).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        List customers = new ArrayList<>();
+        List bookings = new ArrayList<>();
         for (QueryDocumentSnapshot document : documents) {
             System.out.println(document.getData());
             //System.out.println(document.getId() + " => " + document.toObject(Customer.class));
-            customers.add(document.getData());
+            bookings.add(document.getData());
         }
-        System.out.println(customers);
-        return customers;
+        System.out.println(bookings);
+        return bookings;
     }
 
-    public String updateCustomerDetails(Customer person) throws InterruptedException, ExecutionException {
+    public String updateBookingDetails(Booking booking) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(person.getDocumentId()).set(person);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(booking.getDocumentId()).set(booking);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public String deleteCustomer(String documentId) {
+    public String deleteBooking(String documentId) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> writeResult = dbFirestore.collection(COL_NAME).document(documentId).delete();
         return "Document with Customer ID "+documentId+" has been deleted";
     }
-
-
-
 }

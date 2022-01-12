@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.Customer;
 import com.example.backend.auth.models.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
