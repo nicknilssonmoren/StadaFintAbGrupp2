@@ -7,7 +7,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
 import Footer from "./pages/static/Footer";
-import MyPage from "./pages/static/MyPage";
 import AdminNavBar from "./pages/admin/AdminNavBar";
 import ManageCustomer from "./pages/admin/ManageCustomer";
 import ManageEmployee from "./pages/admin/ManageEmployee";
@@ -31,7 +30,6 @@ function App() {
                     <Route path="register" element={<Register/>}/>
                     <Route path="customer" element={<GetCustomerMall/>}/>
                     <Route path="admin" element={<AdminNavBar/>}/>
-                    <Route path="mypage" element={<MyPage />} />
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
                     <Route path="managebooking" element={<ManageBooking/>}/>
