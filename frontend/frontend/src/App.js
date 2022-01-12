@@ -20,8 +20,6 @@ import CustomerNavBar from "./pages/Customers/CustomerNavBar";
 import Bookings from "./pages/Customers/Bookings";
 import BookingHistory from "./pages/Customers/BookingHistory";
 import ShowBookings from "./pages/Customers/ShowBookings";
-import TestCustomer from "./pages/admin/TestCustomer";
-import TestEmployee from "./pages/admin/TestEmployee";
 import AcceptBooking from "./pages/employee/AcceptBooking";
 
 function App() {
@@ -35,9 +33,7 @@ function App() {
                     <Route path="admin" element={<AdminNavBar/>}/>
                     <Route path="mypage" element={<MyPage />} />
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
-                    <Route path="testCustomer" element={<TestCustomer />}/>
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
-                    <Route path="testEmployee" element={<TestEmployee />}/>
                     <Route path="managebooking" element={<ManageBooking/>}/>
                     <Route path="employee" element={<EmployeeNavBar/>}/>
                     <Route path="cleaningbooked" element={<Booked/>}/>
