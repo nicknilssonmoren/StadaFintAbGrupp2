@@ -2,51 +2,52 @@ import React, {useState} from 'react';
 import CustomerNavBar from "./CustomerNavBar";
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
+import {idToken} from "../idToken";
 
-function bookIt (date) {
-    let dateForMe = date;
+async function bookIt(date) {
+    let dateForMe = date.toDateString();
 
     try {
         let email = document.getElementById("email")
-        //let myChoice = document.querySelector('input[name="cleaningChoice"]:checked').value;
-
         let rates = document.getElementsByName('cleaningChoice');
-        let rate_value;
-        for(let i = 0; i < rates.length; i++){
-            if(rates[i].checked){
-                rate_value = rates[i].value;
+        let cleaningChoice;
+
+        for (let i = 0; i < rates.length; i++) {
+            if (rates[i].checked) {
+                cleaningChoice = rates[i].value;
             }
         }
 
 
         console.log(email.value);
-        console.log(dateForMe.toDateString())
-        console.log(rate_value);
+        console.log(dateForMe)
+        console.log(cleaningChoice);
 
 
-        // const response = await fetch('http://localhost:8080/createBooking', {
-        //     mode: 'cors', method: 'post', headers: {
-        //         'Authorization': 'Bearer ' + idToken,
-        //         "Content-type": 'application/json',
-        //         "Access-Control-Allow-Origin": "http://localhost:8080/"
-        //     }, body: JSON.stringify({
-        //         "address": address, "documentId": userId, "email": email, "role": "Customer"
-        //     })
-        //
-        // })
-        //     //.then(json)
-        //     .then(function (data) {
-        //         console.log('Request succeeded with JSON response', data);
-        //     })
-        //     .catch(function (error) {
-        //         console.log('Request failed', error);
-        //     });
-        //
-        // alert("Your account has successfully been created.");
-        // window.location = '/';
+        const response = await fetch('http://localhost:8080/createBooking', {
+            mode: 'cors', method: 'post', headers: {
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "*"
+            }, body: JSON.stringify({
+                "address": "Hårdkodad adress 1", "cleaningType": cleaningChoice, "customerEmail": email.value, "date": dateForMe,
+                "documentId": "", "employeeEmail": "", "grade": ""
+            })
+
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+
+        alert("Your booking has successfully been created.");
+        //window.location = '/';
     } catch (e) {
-        alert("Email is already in use.");
+        console.log(e);
+        alert("Your booking failed, biatch");
     }
 }
 
