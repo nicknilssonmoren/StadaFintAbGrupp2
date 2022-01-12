@@ -16,7 +16,7 @@ function TestCustomer() {
 
     function getAllCustomers() {
         console.log(customers);
-        return customers.filter(customer => customer.role == "Customer")
+        return customers.filter(customer => customer.role === "Customer")
             .map(customer => (
             <tr key={customer.documentId}>
                 <th scope="row">{customer.documentId}</th>
