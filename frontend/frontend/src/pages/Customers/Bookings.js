@@ -28,10 +28,10 @@ async function bookIt(date) {
             mode: 'cors', method: 'post', headers: {
                 'Authorization': 'Bearer ' + idToken,
                 "Content-type": 'application/json',
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
                 "address": "Hårdkodad adress 1", "cleaningType": cleaningChoice, "customerEmail": email.value, "date": dateForMe,
-                "documentId": "", "employeeEmail": "", "grade": ""
+                "documentId": email.value, "employeeEmail": "", "grade": ""
             })
 
         })
