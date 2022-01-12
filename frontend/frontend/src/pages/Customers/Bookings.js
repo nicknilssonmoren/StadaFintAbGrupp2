@@ -1,14 +1,36 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomerNavBar from "./CustomerNavBar";
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
 
+// function ManageCustomer(email) {
+//     const [customers, setCustomers] = useState([])
+//     useEffect(() => {
+//         fetch('http://localhost:8080/getAllCustomers', {
+//             headers: {
+//                 'Authorization': 'Bearer ' + idToken
+//             }
+//         })
+//             .then(req => req.json())
+//             .then(json => setCustomers(json))
+//     }, [])
+//
+//         console.log(customers);
+//         return customers.filter(customer => customer.email === email)
+//             .map(customer => (
+//                     customer.address
+//                 ))
+// }
+
 async function bookIt(date) {
+    let email = document.getElementById("email")
+    // let address = ManageCustomer(email);
+
     let dateForMe = date.toDateString();
 
     try {
-        let email = document.getElementById("email")
+
         let rates = document.getElementsByName('cleaningChoice');
         let cleaningChoice;
 
@@ -30,7 +52,7 @@ async function bookIt(date) {
                 "Content-type": 'application/json',
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
-                "address": "Hårdkodad adress 1", "cleaningType": cleaningChoice, "customerEmail": email.value, "date": dateForMe,
+                "address": "Hittepå adressen 1", "cleaningType": cleaningChoice, "customerEmail": email.value, "date": dateForMe,
                 "documentId": email.value, "employeeEmail": "", "grade": ""
             })
 
@@ -67,9 +89,6 @@ function Bookings() {
                     <span className='bold'>Selected Date:</span>{' '}
                     {date.toDateString()}
                 </p>
-                <div className={"d-flex justify-content-center pt-5"}>
-                    <input placeholder={" Enter Email"} id={"email"}/>
-                </div>
 
                 <form className={"d-flex justify-content-center pt-5"} id={"myChoice"}>
                     <div className="form-check">
@@ -97,6 +116,10 @@ function Bookings() {
                         </label>
                     </div>
                 </form>
+
+                <div className={"d-flex justify-content-center pt-5"}>
+                    <input placeholder={" Enter Email"} id={"email"}/>
+                </div>
 
                 <div className={"d-flex justify-content-center pt-5"}>
                     <button onClick={() => bookIt(date)} id={"button"} type="button"
