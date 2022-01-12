@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react';
 import AdminNavBar from "./AdminNavBar";
 
-const idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MDZmMzc1MjI0N2ZjZjk0Y2JlNWQyZDZiNTlmYThhMmJhYjFlYzIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc3RhZGFmaW50LTRiZTM1IiwiYXVkIjoic3RhZGFmaW50LTRiZTM1IiwiYXV0aF90aW1lIjoxNjQxODk2NDA1LCJ1c2VyX2lkIjoiZXdqblFBaDZLM2JXSlM3aHZ0Z0lEQjFYa2g3MiIsInN1YiI6ImV3am5RQWg2SzNiV0pTN2h2dGdJREIxWGtoNzIiLCJpYXQiOjE2NDE4OTY0MDUsImV4cCI6MTY0MTkwMDAwNSwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdDFAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.WC-0CtIT30Hn2JDLnUHBe9Z6ariHr83tYzXCONIxBylGbpZ36aIqgPlXwI38e4RSDL7MysB2C-KacSKUdWcOSXmp3m-fO5AxmiNJFbMvtF20MTHf8OrywaL6sPacm3Vt5e4tsfDx20UDLqyGV2tutl6efZx4wFcVxpUSNtIN1bgXzdOKLYH2B5Pv1myyqJbSoO6rQM5MnWsE5Rahp4EH1RozGKxE_3jURiBvxS5GgJNgncPHzud0Hh4WyycAkObc-mFD0cuRsOJ7qFjfwhuqGexNFWbUBS1FBSvagHbbEgLQ24k29_cgpt4HX_4SIKg4Wzkcv-40UiY19hFqLZo0sQ"
+const idToken = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjM1MDZmMzc1MjI0N2ZjZjk0Y2JlNWQyZDZiNTlmYThhMmJhYjFlYzIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc3RhZGFmaW50LTRiZTM1IiwiYXVkIjoic3RhZGFmaW50LTRiZTM1IiwiYXV0aF90aW1lIjoxNjQxOTA1ODIyLCJ1c2VyX2lkIjoiUHNkMkFCRWhIR056VDZrNHlXS3lBV0lLcGd3MiIsInN1YiI6IlBzZDJBQkVoSEdOelQ2azR5V0t5QVdJS3BndzIiLCJpYXQiOjE2NDE5MDU4MjIsImV4cCI6MTY0MTkwOTQyMiwiZW1haWwiOiJ0ZXN0eUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdHlAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.XZN44cFyZJrGIbPgYYW2Pb5IsPNCA5jNogvoKFMp1TwUPJKFOrTgVYdye8JclKT7XT7p7exUZqu_wFS9Idl9W8hP17a4vm0phV-Bw5vprztFx5VUJqOtFtGBOFZDvdhytaxbfocg0nOjjc-DMtvrrxxEoqyy7UvUjzDhjngVF8fX18gTKf33MrlGVwx5a7x4lp4Eo79qI1_-T_m8rKDzsjqdBRTxxyXm-1yd_sfbOgrJxP0yfHXDu8GxVG6_ZoZj5j4tEkQKFUtlLRNNYPaYSsOu20HWcfe9gZ7MiHghsuH_bM_3SFBfHw6ZHUnGR6ybis1dZeM1U8Dqlx_Gh_gzKA"
 
 async function getAll() {
     const response = await fetch('http://localhost:8080/getAllCustomers', {
@@ -20,13 +20,17 @@ let arrayOfUsers;
 
 class ManageCustomer extends Component {
     _renderUsers = () => () => {
-        const [customer ,setCustomers]=useState([]);
+        const [customer, setCustomers] = useState([]);
         getAll()
-            .then(me => console.log(me))
-            .then(me => setCustomers(me))
+            .then(me => console.log("HEJ"))
+            .then(me => {arrayOfUsers.push(me)})
+            .then(x => console.log(arrayOfUsers))
+
+
 
         return <div>
-            {customer}
+            <p>TESTTT</p>
+            <p>{}</p>
         </div>
     }
     render() {
