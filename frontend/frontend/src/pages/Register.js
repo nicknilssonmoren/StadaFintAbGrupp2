@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {initializeApp} from "firebase/app";
 import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
+import Header from "./static/Header";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -64,7 +65,8 @@ class Register extends Component {
     render() {
         return (
             <>
-                <h3 className="justify-content-center d-flex">Register</h3>
+                <Header></Header>
+                <h4 className="justify-content-center d-flex">Register</h4>
                 <div className="justify-content-center d-flex">
                     <div>
                         <label>Email</label>
