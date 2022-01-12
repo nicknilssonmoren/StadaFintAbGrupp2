@@ -2,7 +2,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Login from './pages/Login'
 import Register from "./pages/Register";
-import GetCustomerMall from "./pages/Backend Mall/GetCustomerMall";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
@@ -29,7 +28,6 @@ function App() {
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
-                    <Route path="customer" element={<GetCustomerMall/>}/>
                     <Route path="admin" element={<AdminNavBar/>}/>
                     <Route path="mypage" element={<MyPage />} />
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
