@@ -16,6 +16,14 @@ class Booked extends Component {
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error mollitia natus
                                 praesentium totam! Assumenda autem debitis doloremque earum enim ipsum iusto libero
                                 molestias nemo numquam odit quaerat, veritatis, vero voluptatem.</p>
+                            <div className={"d-flex justify-content-end"}>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                                        Utförd
+                                    </label>
+                                </div>
+                            </div>
                         </a>
                         <a href="#" className="list-group-item list-group-item-action">
                             <div className="d-flex justify-content-between">
@@ -25,6 +33,15 @@ class Booked extends Component {
                             <p className="mb-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                                 culpa, cupiditate dicta dolor ducimus, enim est facere ipsum labore, laudantium magni
                                 neque obcaecati praesentium quam quo repudiandae saepe sunt voluptatum.</p>
+                            <div className={"d-flex justify-content-end"}>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value=""
+                                           id="flexCheckDefault-1"/>
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                                        Utförd
+                                    </label>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>

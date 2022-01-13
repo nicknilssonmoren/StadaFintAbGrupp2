@@ -9,11 +9,11 @@ class CustomerNavBar extends Component {
             <div>
                 <Header/>
                 <div className={"container d-flex justify-content-evenly mt-3"}>
-                    <NavLink to={"/bookings"} activeClassName={"active"} exact={true}
+                    <NavLink to={"/bookings"} activeclassname={"active"}
                              className={"customerlink"}>Boka Städning</NavLink>
-                    <NavLink to={"/bookingHistory"} activeClassName={"active"} exact={true}
+                    <NavLink to={"/bookingHistory"} activeclassname={"active"}
                              className={"customerlink"}>Historik</NavLink>
-                    <NavLink to={"/showBookings"} activeClassName={"active"} exact={true}
+                    <NavLink to={"/showBookings"} activeclassname={"active"}
                              className={"customerlink"}>Visa bokade städningar</NavLink>
                     <a href={"/"} type="button" className={"customerlink"}>Logga ut</a>
                 </div>
