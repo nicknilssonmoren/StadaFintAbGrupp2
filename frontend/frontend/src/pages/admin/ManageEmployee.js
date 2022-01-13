@@ -22,6 +22,11 @@ function ManageEmployee() {
                     <th scope="row">{customer.documentId}</th>
                     <td>{customer.email}</td>
                     <td>{customer.address}</td>
+                    <button>Hantera/redigera</button>
+                    {/*
+                        TODO:
+                        Button redigera/hantera behöver implementeras
+                        */}
                 </tr>))
     }
 

@@ -22,6 +22,11 @@ function ManageCustomer() {
                 <th scope="row">{customer.documentId}</th>
                 <td>{customer.email}</td>
                 <td>{customer.address}</td>
+                <button>Redigera</button>
+                {/*
+                        TODO:
+                        Button redigera/hantera behöver implementeras
+                        */}
             </tr>))
     }
 
