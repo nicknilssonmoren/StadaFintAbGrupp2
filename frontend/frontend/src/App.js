@@ -6,7 +6,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/static/Layout";
 import NoPage from "./pages/NoPage";
 import Footer from "./pages/static/Footer";
-import MyPage from "./pages/static/MyPage";
 import AdminNavBar from "./pages/admin/AdminNavBar";
 import ManageCustomer from "./pages/admin/ManageCustomer";
 import ManageEmployee from "./pages/admin/ManageEmployee";
