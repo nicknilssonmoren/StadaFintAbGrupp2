@@ -39,7 +39,9 @@ function ShowBookings() {
                     <td>{booking.customerEmail}</td>
                     <td>{booking.cleaningType}</td>
                     <td>{booking.address}</td>
-                    <td><button onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
+                    <div className={"d-flex justify-content-end gap-3"}>
+                    <td><button type="button" className="btn btn-success mr-1" onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
+                    </div>
                 </tr>))
     }
         return (
