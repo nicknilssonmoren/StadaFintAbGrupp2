@@ -2,6 +2,23 @@ import React, {useEffect, useState} from 'react';
 import AdminNavBar from "./CustomerNavBar";
 import {idToken} from "../idToken";
 
+function deleteBooking(documentId) {
+    fetch('http://localhost:8080/deleteBooking?documentId=' + documentId, {
+        mode: 'cors', method: 'delete', headers: {
+            'Authorization': 'Bearer ' + idToken,
+            "Access-Control-Allow-Origin": "http://localhost:8080/"
+        }
+    })
+        //.then(json)
+        .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
+    window.location.reload()
+    }
+
 function ShowBookings() {
     const [bookings, setBookings] = useState([])
     useEffect(()=>{
@@ -21,8 +38,8 @@ function ShowBookings() {
                     <td>{booking.date}</td>
                     <td>{booking.customerEmail}</td>
                     <td>{booking.cleaningType}</td>
-                    <td>@{booking.address}</td>
-                    <td><button>Avboka</button></td>
+                    <td>{booking.address}</td>
+                    <td><button onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
                 </tr>))
     }
         return (
