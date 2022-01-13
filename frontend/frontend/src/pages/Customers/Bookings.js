@@ -4,28 +4,19 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
 
-// function ManageCustomer(email) {
-//     const [customers, setCustomers] = useState([])
-//     useEffect(() => {
-//         fetch('http://localhost:8080/getAllCustomers', {
-//             headers: {
-//                 'Authorization': 'Bearer ' + idToken
-//             }
-//         })
-//             .then(req => req.json())
-//             .then(json => setCustomers(json))
-//     }, [])
-//
-//         console.log(customers);
-//         return customers.filter(customer => customer.email === email)
-//             .map(customer => (
-//                     customer.address
-//                 ))
-// }
 
-async function bookIt(date) {
-    let email = document.getElementById("email")
-    // let address = ManageCustomer(email);
+async function bookIt(date, customers) {
+    let customerEmail = document.getElementById("email")
+    console.log(customers);
+   let customerAddress = customers.filter(customer => customer.email === customerEmail.value)
+        .map(customer => (
+                    customer.address));
+
+   console.log(customerAddress);
+
+    //let address = await getAllCustomers(email);
+
+   // console.log(address);
 
     let dateForMe = date.toDateString();
 
@@ -41,7 +32,7 @@ async function bookIt(date) {
         }
 
 
-        console.log(email.value);
+        console.log(customerEmail.value);
         console.log(dateForMe)
         console.log(cleaningChoice);
 
@@ -52,8 +43,8 @@ async function bookIt(date) {
                 "Content-type": 'application/json',
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
-                "address": "Hittepå adressen 1", "cleaningType": cleaningChoice, "customerEmail": email.value, "date": dateForMe,
-                "documentId": email.value, "employeeEmail": "", "grade": ""
+                "address": customerAddress[0], "cleaningType": cleaningChoice, "customerEmail": customerEmail.value, "date": dateForMe,
+                "documentId": customerEmail.value, "employeeEmail": "", "grade": ""
             })
 
         })
@@ -66,16 +57,39 @@ async function bookIt(date) {
             });
 
         alert("Your booking has successfully been created.");
-        //window.location = '/';
+        //window.location = '/showBookings';
     } catch (e) {
         console.log(e);
-        alert("Your booking failed, biatch");
+        alert("Your booking failed");
     }
 }
 
 
+// function callOnAFunction(customers) {
+//     console.log(customers);
+//     return customers.filter(customer => customer.role === "Customer")
+//         .map(customer => (
+//             <tr key={customer.documentId}>
+//                 <th scope="row">{customer.documentId}</th>
+//                 <td>{customer.email}</td>
+//                 <td>{customer.address}</td>
+//             </tr>))
+//
+// }
+
 function Bookings() {
     const [date, setDate] = useState(new Date());
+    const [customers, setCustomers] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:8080/getAllCustomers', {
+            headers: {
+                'Authorization': 'Bearer ' + idToken
+            }
+        })
+            .then(req => req.json())
+            .then(json => setCustomers(json))
+    },[])
+    //callOnAFunction(customers);
 
     return (<>
             <CustomerNavBar />
@@ -118,11 +132,11 @@ function Bookings() {
                 </form>
 
                 <div className={"d-flex justify-content-center pt-5"}>
-                    <input placeholder={" Enter Email"} id={"email"}/>
+                    <input placeholder={" Verify your email"} id={"email"}/>
                 </div>
 
                 <div className={"d-flex justify-content-center pt-5"}>
-                    <button onClick={() => bookIt(date)} id={"button"} type="button"
+                    <button onClick={() => bookIt(date, customers)} id={"button"} type="button"
                             className="btn btn-primary">Boka
                     </button>
                 </div>
