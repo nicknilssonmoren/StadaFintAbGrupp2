@@ -43,8 +43,9 @@ function ManageBooking() {
                     <td>{customerBookings.cleaningType}</td>
                     <td>{customerBookings.address}</td>
                     <td>
-                        <button onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button>
-                        <button>Tilldela</button>
+                        <div className={"d-flex justify-content-end gap-3"}>
+                        <button type="button" className="btn btn-danger" onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button><button type="button" className="btn btn-success mr-1">Tilldela</button>
+                        </div>
                         {/*
                         TODO:
                         Tilldela städning till anställd

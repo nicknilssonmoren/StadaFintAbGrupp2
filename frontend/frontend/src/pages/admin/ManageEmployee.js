@@ -22,7 +22,9 @@ function ManageEmployee() {
                     <th scope="row">{customer.documentId}</th>
                     <td>{customer.email}</td>
                     <td>{customer.address}</td>
-                    <button>Hantera/redigera</button>
+                    <div className={"d-flex justify-content-end gap-3"}>
+                        <button type="button" className="btn btn-success mr-1">Redigera</button>
+                    </div>
                     {/*
                         TODO:
                         Button redigera/hantera behöver implementeras
