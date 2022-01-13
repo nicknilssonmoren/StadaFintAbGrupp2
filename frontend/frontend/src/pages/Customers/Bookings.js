@@ -25,12 +25,6 @@ async function bookIt(date, customers) {
             }
         }
 
-
-        console.log(customerEmail.value);
-        console.log(dateForMe)
-        console.log(cleaningChoice);
-
-
         const response = await fetch('http://localhost:8080/createBooking', {
             mode: 'cors', method: 'post', headers: {
                 'Authorization': 'Bearer ' + idToken,
@@ -42,7 +36,6 @@ async function bookIt(date, customers) {
             })
 
         })
-            //.then(json)
             .then(function (data) {
                 console.log('Request succeeded with JSON response', data);
             })
@@ -69,7 +62,6 @@ function Bookings() {
             .then(req => req.json())
             .then(json => setCustomers(json))
     },[])
-    //callOnAFunction(customers);
 
     return (<>
             <CustomerNavBar />
