@@ -29,7 +29,6 @@ function App() {
                     <Route index element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
                     <Route path="admin" element={<AdminNavBar/>}/>
-                    <Route path="mypage" element={<MyPage />} />
                     <Route path="bookForCustomer" element={<BookForCustomer/>}/>
                     <Route path="managecustomer" element={<ManageCustomer/>}/>
                     <Route path="manageemployee" element={<ManageEmployee/>}/>
