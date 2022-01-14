@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import AdminNavBar from "./AdminNavBar";
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
+import AssignComponent from "./AssignComponent"
+import {Dropdown} from "react-bootstrap";
 
 function deleteCustomerBooking(documentId) {
     fetch('http://localhost:8080/deleteBooking?documentId=' + documentId, {
@@ -22,6 +24,7 @@ function deleteCustomerBooking(documentId) {
 
 function ManageBooking() {
     const [customerBookings, setCustomerBookings] = useState([])
+    const [employees, setEmplyee] = useState([])
     useEffect(()=>{
         fetch('http://localhost:8080/getAllBookings', {
             headers: {
@@ -34,6 +37,10 @@ function ManageBooking() {
             .then(json => setCustomerBookings(json))
     },[])
 
+    function assignBooking(documentId) {
+        console.log("Hejejeje")
+    }
+
     function getAllBookings() {
         return customerBookings.filter(customerBookings => customerBookings.date != null)
             .map(customerBookings => (
@@ -44,17 +51,24 @@ function ManageBooking() {
                     <td>{customerBookings.address}</td>
                     <td>
                         <div className={"d-flex justify-content-end gap-3"}>
-                        <button type="button" className="btn btn-danger" onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button><button type="button" className="btn btn-success mr-1">Tilldela</button>
+                        <button type="button" className="btn btn-danger" onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    Tilldela
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Action</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Another action</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Something else</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
-                        {/*
-                        TODO:
-                        Tilldela städning till anställd
-                        kanske ladda in en ny komponent där man kan välja
-                        vilken anställd som ska få städningen.
-                        */}
                     </td>
                 </tr>))
     }
+
+
     return (
         <div>
             <AdminNavBar/>
