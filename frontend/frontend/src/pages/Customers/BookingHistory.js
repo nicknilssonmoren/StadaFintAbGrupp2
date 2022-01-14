@@ -16,6 +16,7 @@ class BookingHistory extends Component {
                             <th scope="col">Email</th>
                             <th scope="col">Password</th>
                             <th scope="col">Adress</th>
+                            <th scope="col">Utförd Av</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -24,17 +25,20 @@ class BookingHistory extends Component {
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
+                            <td>Städare</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>@fat</td>
+                            <td>Städare</td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
                             <td colSpan="2">Larry the Bird</td>
                             <td>@twitter</td>
+                            <td>Städare</td>
                         </tr>
                         </tbody>
                     </table>
