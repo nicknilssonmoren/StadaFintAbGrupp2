@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import CustomerNavBar from "./CustomerNavBar";
-import Calendar from 'react-calendar'
+import AdminNavBar from "./AdminNavBar";
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
 
@@ -8,9 +8,9 @@ import {idToken} from "../idToken";
 async function bookIt(date, customers) {
     let customerEmail = document.getElementById("email")
     console.log(customers);
-   let customerAddress = customers.filter(customer => customer.email === customerEmail.value)
+    let customerAddress = customers.filter(customer => customer.email === customerEmail.value)
         .map(customer => (
-                    customer.address));
+            customer.address));
 
     let dateForMe = date.toDateString();
 
@@ -36,6 +36,7 @@ async function bookIt(date, customers) {
             })
 
         })
+            //.then(json)
             .then(function (data) {
                 console.log('Request succeeded with JSON response', data);
             })
@@ -44,13 +45,14 @@ async function bookIt(date, customers) {
             });
 
         alert("Your booking has successfully been created.");
+        //window.location = '/showBookings';
     } catch (e) {
         console.log(e);
         alert("Your booking failed");
     }
 }
 
-function Bookings() {
+function BookForCustomer() {
     const [date, setDate] = useState(new Date());
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
@@ -64,8 +66,8 @@ function Bookings() {
     },[])
 
     return (<>
-            <CustomerNavBar />
-            <div className='app'>
+            <AdminNavBar />
+            <div className='BookForCustomer'>
                 <br />
                 <h1 className='text-center'>Boka</h1>
                 <div className={"d-flex justify-content-center pt-5 calendar-container"}>
@@ -120,4 +122,4 @@ function Bookings() {
     );
 }
 
-export default Bookings;
+export default BookForCustomer;

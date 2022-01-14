@@ -9,6 +9,7 @@ class AdminNavBar extends Component {
             <div>
                 <Header/>
                 <div className={"container d-flex justify-content-evenly mt-3"}>
+                    <NavLink to={"/bookForCustomer"} className={"adminlink"}>Boka åt kund</NavLink>
                     <NavLink to={"/manageCustomer"} activeclassname={"active"}
                              className={"adminlink"}>Hantera kunder</NavLink>
                     <NavLink to={"/manageEmployee"} activeclassname={"active"}
