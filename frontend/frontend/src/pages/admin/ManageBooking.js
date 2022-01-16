@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import AdminNavBar from "./AdminNavBar";
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
-import AssignComponent from "./AssignComponent"
 import {Dropdown} from "react-bootstrap";
 
 function deleteCustomerBooking(documentId) {
@@ -24,7 +23,7 @@ function deleteCustomerBooking(documentId) {
 
 function ManageBooking() {
     const [customerBookings, setCustomerBookings] = useState([])
-    const [employees, setEmplyee] = useState([])
+    const [employees, setEmployee] = useState([])
     useEffect(()=>{
         fetch('http://localhost:8080/getAllBookings', {
             headers: {
@@ -37,8 +36,42 @@ function ManageBooking() {
             .then(json => setCustomerBookings(json))
     },[])
 
-    function assignBooking(documentId) {
-        console.log("Hejejeje")
+    fetch('http://localhost:8080/getAllCustomers', {
+        headers: {
+            'Authorization': 'Bearer ' + idToken
+        }
+    })
+        .then(req => req.json())
+        .then(json => setEmployee(json))
+
+    // function assignToEmployee(empEmail) {
+    //     fetch('http://localhost:8080/createBooking', {
+    //         mode: 'cors', method: 'post', headers: {
+    //             'Authorization': 'Bearer ' + idToken,
+    //             "Content-type": 'application/json',
+    //             "Access-Control-Allow-Origin": "http://localhost:8080/"
+    //         }, body: JSON.stringify({
+    //             "address": customerBookings.address, "cleaningType": customerBookings.cleaningType, "customerEmail": customerBookings.customerEmail, "date": customerBookings.date,
+    //             "documentId": customerBookings.email, "employeeEmail": empEmail, "grade": ""
+    //         })
+    //
+    //     })
+    //         //.then(json)
+    //         .then(function (data) {
+    //             console.log('Request succeeded with JSON response', data);
+    //         })
+    //         .catch(function (error) {
+    //             console.log('Request failed', error);
+    //         });
+    //
+    //     alert("Your booking has successfully been created.");
+    // }
+
+    function getAllEmployees() {
+        return employees.filter(employees => employees.role === "Employee")
+            .map(employee => (
+                <Dropdown.Item >{employee.email}</Dropdown.Item>))
+
     }
 
     function getAllBookings() {
@@ -58,9 +91,7 @@ function ManageBooking() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Action</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Another action</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => assignBooking(customerBookings.documentId)}>Something else</Dropdown.Item>
+                                    {getAllEmployees()}
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
