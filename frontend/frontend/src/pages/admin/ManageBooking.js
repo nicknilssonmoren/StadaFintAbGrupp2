@@ -4,6 +4,8 @@ import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
 import {Dropdown} from "react-bootstrap";
 
+let counter = 0;
+
 function deleteCustomerBooking(documentId) {
     fetch('http://localhost:8080/deleteBooking?documentId=' + documentId, {
         mode: 'cors', method: 'delete', headers: {
@@ -36,42 +38,44 @@ function ManageBooking() {
             .then(json => setCustomerBookings(json))
     },[])
 
-    fetch('http://localhost:8080/getAllCustomers', {
-        headers: {
-            'Authorization': 'Bearer ' + idToken
-        }
-    })
-        .then(req => req.json())
-        .then(json => setEmployee(json))
+    if(counter<1) {
+        counter++;
+        fetch('http://localhost:8080/getAllCustomers', {
+            headers: {
+                'Authorization': 'Bearer ' + idToken
+            }
+        })
+            .then(req => req.json())
+            .then(json => setEmployee(json))
+    }
 
-    // function assignToEmployee(empEmail) {
-    //     fetch('http://localhost:8080/createBooking', {
-    //         mode: 'cors', method: 'post', headers: {
-    //             'Authorization': 'Bearer ' + idToken,
-    //             "Content-type": 'application/json',
-    //             "Access-Control-Allow-Origin": "http://localhost:8080/"
-    //         }, body: JSON.stringify({
-    //             "address": customerBookings.address, "cleaningType": customerBookings.cleaningType, "customerEmail": customerBookings.customerEmail, "date": customerBookings.date,
-    //             "documentId": customerBookings.email, "employeeEmail": empEmail, "grade": ""
-    //         })
-    //
-    //     })
-    //         //.then(json)
-    //         .then(function (data) {
-    //             console.log('Request succeeded with JSON response', data);
-    //         })
-    //         .catch(function (error) {
-    //             console.log('Request failed', error);
-    //         });
-    //
-    //     alert("Your booking has successfully been created.");
-    // }
+    function assignToEmployee(empEmail, customerBookings) {
+        fetch('http://localhost:8080/createBooking', {
+            mode: 'cors', method: 'post', headers: {
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
+            }, body: JSON.stringify({
+                "address": customerBookings.address, "cleaningType": customerBookings.cleaningType, "customerEmail": customerBookings.documentId, "date": customerBookings.date,
+                "documentId": customerBookings.documentId, "employeeEmail": empEmail, "grade": ""
+            })
 
-    function getAllEmployees() {
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+
+        alert("Booking assigned to " + empEmail);
+    }
+
+    function getAllEmployees(customerBookings) {
         return employees.filter(employees => employees.role === "Employee")
             .map(employee => (
-                <Dropdown.Item >{employee.email}</Dropdown.Item>))
-
+                <Dropdown.Item onClick={() => assignToEmployee(employee.email, customerBookings)}>{employee.email}</Dropdown.Item>))
     }
 
     function getAllBookings() {
@@ -91,7 +95,7 @@ function ManageBooking() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    {getAllEmployees()}
+                                    {getAllEmployees(customerBookings)}
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
@@ -117,7 +121,7 @@ function ManageBooking() {
                     </tr>
                     </thead>
                     <tbody>
-                    {getAllBookings()}
+                    {getAllBookings(customerBookings)}
                     </tbody>
                 </table>
             </div>
