@@ -57,7 +57,7 @@ function ManageBooking() {
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
                 "address": customerBookings.address, "cleaningType": customerBookings.cleaningType, "customerEmail": customerBookings.documentId, "date": customerBookings.date,
-                "documentId": customerBookings.documentId, "employeeEmail": empEmail, "grade": ""
+                "documentId": customerBookings.documentId, "employeeEmail": empEmail, "grade": "", "status": "assigned"
             })
 
         })
