@@ -40,7 +40,7 @@ function ShowBookings() {
                     <td>{booking.cleaningType}</td>
                     <td>{booking.address}</td>
                     <div className={"d-flex justify-content-end gap-3"}>
-                    <td><button type="button" className="btn btn-success mr-1" onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
+                    <td><button type="button" className="btn btn-danger mr-1" onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
                     </div>
                 </tr>))
     }
