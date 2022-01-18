@@ -2,12 +2,17 @@ import React, {useEffect, useState} from 'react';
 import AdminNavBar from "./CustomerNavBar";
 import {idToken} from "../idToken";
 
-function deleteBooking(documentId) {
-    fetch('http://localhost:8080/deleteBooking?documentId=' + documentId, {
-        mode: 'cors', method: 'delete', headers: {
+function deleteBooking(booking) {
+    fetch('http://localhost:8080/createBooking', {
+        mode: 'cors', method: 'post', headers: {
             'Authorization': 'Bearer ' + idToken,
+            "Content-type": 'application/json',
             "Access-Control-Allow-Origin": "http://localhost:8080/"
-        }
+        }, body: JSON.stringify({
+            "address": booking.address, "cleaningType": booking.cleaningType, "customerEmail": booking.documentId, "date": booking.date,
+            "documentId": booking.documentId, "employeeEmail": booking.employeeEmail, "grade": booking.grade, "status": "canceled"
+        })
+
     })
         //.then(json)
         .then(function (data) {
@@ -32,7 +37,7 @@ function ShowBookings() {
     },[])
 
     function getAllBookings() {
-        return bookings.filter(booking => booking.date != null)
+        return bookings.filter(booking => booking.status != "canceled")
             .map(booking => (
                 <tr key={booking.documentId}>
                     <td>{booking.date}</td>
@@ -40,7 +45,7 @@ function ShowBookings() {
                     <td>{booking.cleaningType}</td>
                     <td>{booking.address}</td>
                     <div className={"d-flex justify-content-end gap-3"}>
-                    <td><button type="button" className="btn btn-success mr-1" onClick={() => deleteBooking(booking.documentId)}>Avboka</button></td>
+                    <td><button type="button" className="btn btn-success mr-1" onClick={() => deleteBooking(booking)}>Avboka</button></td>
                     </div>
                 </tr>))
     }
