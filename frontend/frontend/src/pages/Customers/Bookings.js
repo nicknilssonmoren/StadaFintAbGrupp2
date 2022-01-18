@@ -32,7 +32,7 @@ async function bookIt(date, customers) {
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
                 "address": customerAddress[0], "cleaningType": cleaningChoice, "customerEmail": customerEmail.value, "date": dateForMe,
-                "documentId": customerEmail.value, "employeeEmail": "", "grade": ""
+                "documentId": customerEmail.value, "employeeEmail": "", "grade": "", "status": "booked"
             })
 
         })
@@ -68,7 +68,7 @@ function Bookings() {
             <div className='app'>
                 <br />
                 <h1 className='text-center'>Boka</h1>
-                <div className={"d-flex justify-content-center pt-5 calendar-container"}>
+                <div className={"d-flex justify-content-center pt-3 calendar-container"}>
                     <Calendar onChange={setDate} value={date} id={"dateForMe"}/>
                 </div>
                 <p className='text-center'>
@@ -76,44 +76,81 @@ function Bookings() {
                     {date.toDateString()}
                 </p>
 
-                <form className={"d-flex justify-content-center pt-5"} id={"myChoice"}>
-                    <div className="form-check">
-                        <input type={"radio"} name={"cleaningChoice"} id={"basic"} value={"basic"}/>
+                {/*<form className={"d-flex justify-content-center pt-3"} id={"myChoice"}>
+                    <div className="form-check form-check-inline">
+                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"basic"} value={"basic"}/>
                         <label className="form-check-label" htmlFor="basic">
                             Basic Städning
                         </label>
                     </div>
-                    <div className="form-check">
-                        <input type={"radio"} name={"cleaningChoice"} id={"topp"} value={"topp"}/>
+                    <div className="form-check form-check-inline">
+                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"topp"} value={"topp"}/>
                         <label className="form-check-label" htmlFor="topp">
                             Topp städning
                         </label>
                     </div>
-                    <div className="form-check">
-                        <input type={"radio"} name={"cleaningChoice"} id={"diamant"} value={"diamant"}/>
+                    <div className="form-check form-check-inline">
+                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"diamant"} value={"diamant"}/>
                         <label className="form-check-label" htmlFor="diamant">
                             Diamant städning
                         </label>
                     </div>
-                    <div className="form-check">
-                        <input type={"radio"} name={"cleaningChoice"} id={"fonster"} value={"fonster"}/>
+                    <div className="form-check form-check-inline">
+                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"fonster"} value={"fonster"}/>
                         <label className="form-check-label" htmlFor="fonster">
                             Fönstertvätt
                         </label>
                     </div>
+                </form>*/}
+
+                <form>
+                    <div className={"d-flex justify-content-center pt-2"}>
+                        <input placeholder={" Verify your email"} id={"email"}/>
+                    </div>
+
+                    <div id="result"></div>
+                    <fieldset className={"d-flex justify-content-center pt-2"}>
+                        <div className={"row"}>
+                            <legend className={"col-form-label col-sm-4 pt-0"}></legend>
+                            <div className={"col-sm-14"}>
+                                <div className={"form-check"}>
+                                    <input class="form-check-input" type="radio" name="cleaningChoice" id="basic" value="basic"/>
+                                    <label className="form-check-label" htmlFor="basic">
+                                        Basic Städning
+                                    </label>
+                                </div>
+                                <div className={"form-check"}>
+                                    <input className="form-check-input" type="radio" name="cleaningChoice" id="topp"
+                                           value="topp"/>
+                                    <label className="form-check-label" htmlFor="topp">
+                                        Topp Städning
+                                    </label>
+                                </div>
+                                <div className={"form-check"}>
+                                    <input className="form-check-input" type="radio" name="cleaningChoice" id="diamant"
+                                           value="diamant"/>
+                                    <label className="form-check-label" htmlFor="diamant">
+                                        Diamant Städning
+                                    </label>
+                                </div>
+                                <div className={"form-check"}>
+                                    <input className="form-check-input" type="radio" name="cleaningChoice" id="fonster"
+                                           value="fonster"/>
+                                    <label className="form-check-label" htmlFor="fonster">
+                                        Fönstertvätt
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
-
-                <div className={"d-flex justify-content-center pt-5"}>
-                    <input placeholder={" Verify your email"} id={"email"}/>
-                </div>
-
-                <div className={"d-flex justify-content-center pt-5"}>
+                <div className={"d-flex justify-content-center pt-3"}>
                     <button onClick={() => bookIt(date, customers)} id={"button"} type="button"
                             className="btn btn-primary">Boka
                     </button>
                 </div>
 
-                <div id="result"></div>
+
 
             </div>
         </>

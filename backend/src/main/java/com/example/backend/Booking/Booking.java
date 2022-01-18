@@ -13,4 +13,5 @@ public class Booking {
     String employeeEmail;
     String address;
     int grade; // 1-5
+    String status;
 }

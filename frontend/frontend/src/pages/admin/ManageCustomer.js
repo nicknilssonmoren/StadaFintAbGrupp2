@@ -2,6 +2,23 @@ import React, {useState, useEffect} from 'react';
 import AdminNavBar from "./AdminNavBar";
 import {idToken} from "../idToken";
 
+function deleteCustomer(documentId) {
+    fetch('http://localhost:8080/deleteCustomer?documentId=' + documentId, {
+        mode: 'cors', method: 'delete', headers: {
+            'Authorization': 'Bearer ' + idToken,
+            "Access-Control-Allow-Origin": "http://localhost:8080/"
+        }
+    })
+        //.then(json)
+        .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
+    window.location.reload()
+}
+
 function ManageCustomer() {
     const [customers, setCustomers] = useState([])
     useEffect(()=>{
@@ -23,12 +40,8 @@ function ManageCustomer() {
                 <td>{customer.email}</td>
                 <td>{customer.address}</td>
                 <div className={"d-flex justify-content-end gap-3"}>
-                <button type="button" className="btn btn-success mr-1">Redigera</button>
+                    <button type="button" className="btn btn-success" onClick={() => deleteCustomer(customer.documentId)}>Ta bort</button>
                 </div>
-                {/*
-                        TODO:
-                        Button redigera/hantera behöver implementeras
-                        */}
             </tr>))
     }
 

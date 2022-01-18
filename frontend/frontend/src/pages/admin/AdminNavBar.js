@@ -16,6 +16,8 @@ class AdminNavBar extends Component {
                              className={"adminlink"}>Hantera anställda</NavLink>
                     <NavLink to={"/manageBooking"} activeclassname={"active"}
                              className={"adminlink"}>Hantera bokningar</NavLink>
+                    <NavLink to={"/registerrole"} activeclassname={"active"}
+                             className={"adminlink"}>Registrera</NavLink>
                     <a href={"/"} type="button" className={"adminlink"}>Logga ut</a>
                 </div>
             </div>

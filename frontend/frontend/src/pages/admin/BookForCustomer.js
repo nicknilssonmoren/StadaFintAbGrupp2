@@ -32,7 +32,7 @@ async function bookIt(date, customers) {
                 "Access-Control-Allow-Origin": "http://localhost:8080/"
             }, body: JSON.stringify({
                 "address": customerAddress[0], "cleaningType": cleaningChoice, "customerEmail": customerEmail.value, "date": dateForMe,
-                "documentId": customerEmail.value, "employeeEmail": "", "grade": ""
+                "documentId": customerEmail.value, "employeeEmail": "", "grade": "", "status": "booked"
             })
 
         })
