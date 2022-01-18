@@ -79,7 +79,7 @@ function ManageBooking() {
     }
 
     function getAllBookings() {
-        return customerBookings.filter(customerBookings => customerBookings.status !== "completed" || customerBookings.status !== "canceled")
+        return customerBookings.filter(customerBookings => customerBookings.status !== "completed")
             .map(customerBookings => (
                 <tr key={customerBookings.documentId}>
                     <td>{customerBookings.date}</td>
