@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import AdminNavBar from "./AdminNavBar";
 import 'react-calendar/dist/Calendar.css';
 import {idToken} from "../idToken";
+import {Dropdown} from "react-bootstrap";
+
+let counter = 0;
 
 function deleteCustomerBooking(documentId) {
     fetch('http://localhost:8080/deleteBooking?documentId=' + documentId, {
@@ -22,6 +25,7 @@ function deleteCustomerBooking(documentId) {
 
 function ManageBooking() {
     const [customerBookings, setCustomerBookings] = useState([])
+    const [employees, setEmployee] = useState([])
     useEffect(()=>{
         fetch('http://localhost:8080/getAllBookings', {
             headers: {
@@ -34,6 +38,46 @@ function ManageBooking() {
             .then(json => setCustomerBookings(json))
     },[])
 
+    if(counter<1) {
+        counter++;
+        fetch('http://localhost:8080/getAllCustomers', {
+            headers: {
+                'Authorization': 'Bearer ' + idToken
+            }
+        })
+            .then(req => req.json())
+            .then(json => setEmployee(json))
+    }
+
+    function assignToEmployee(empEmail, customerBookings) {
+        fetch('http://localhost:8080/createBooking', {
+            mode: 'cors', method: 'post', headers: {
+                'Authorization': 'Bearer ' + idToken,
+                "Content-type": 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:8080/"
+            }, body: JSON.stringify({
+                "address": customerBookings.address, "cleaningType": customerBookings.cleaningType, "customerEmail": customerBookings.documentId, "date": customerBookings.date,
+                "documentId": customerBookings.documentId, "employeeEmail": empEmail, "grade": "", "status": "assigned"
+            })
+
+        })
+            //.then(json)
+            .then(function (data) {
+                console.log('Request succeeded with JSON response', data);
+            })
+            .catch(function (error) {
+                console.log('Request failed', error);
+            });
+
+        alert("Booking assigned to " + empEmail);
+    }
+
+    function getAllEmployees(customerBookings) {
+        return employees.filter(employees => employees.role === "Employee")
+            .map(employee => (
+                <Dropdown.Item onClick={() => assignToEmployee(employee.email, customerBookings)}>{employee.email}</Dropdown.Item>))
+    }
+
     function getAllBookings() {
         return customerBookings.filter(customerBookings => customerBookings.date != null)
             .map(customerBookings => (
@@ -44,17 +88,22 @@ function ManageBooking() {
                     <td>{customerBookings.address}</td>
                     <td>
                         <div className={"d-flex justify-content-end gap-3"}>
-                        <button type="button" className="btn btn-danger" onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button><button type="button" className="btn btn-success mr-1">Tilldela</button>
+                        <button type="button" className="btn btn-danger" onClick={() => deleteCustomerBooking(customerBookings.documentId)}>Avboka</button>
+                            <Dropdown>
+                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    Tilldela
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    {getAllEmployees(customerBookings)}
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
-                        {/*
-                        TODO:
-                        Tilldela städning till anställd
-                        kanske ladda in en ny komponent där man kan välja
-                        vilken anställd som ska få städningen.
-                        */}
                     </td>
                 </tr>))
     }
+
+
     return (
         <div>
             <AdminNavBar/>
@@ -72,7 +121,7 @@ function ManageBooking() {
                     </tr>
                     </thead>
                     <tbody>
-                    {getAllBookings()}
+                    {getAllBookings(customerBookings)}
                     </tbody>
                 </table>
             </div>

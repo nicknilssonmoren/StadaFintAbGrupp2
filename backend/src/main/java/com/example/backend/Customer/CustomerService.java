@@ -59,11 +59,11 @@ public class CustomerService {
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         List customers = new ArrayList<>();
         for (QueryDocumentSnapshot document : documents) {
-            System.out.println(document.getData());
+            //System.out.println(document.getData());
             //System.out.println(document.getId() + " => " + document.toObject(Customer.class));
             customers.add(document.getData());
         }
-        System.out.println(customers);
+        //System.out.println(customers);
         return customers;
     }
 
