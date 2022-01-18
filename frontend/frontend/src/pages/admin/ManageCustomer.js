@@ -9,7 +9,6 @@ function deleteCustomer(documentId) {
             "Access-Control-Allow-Origin": "http://localhost:8080/"
         }
     })
-        //.then(json)
         .then(function (data) {
             console.log('Request succeeded with JSON response', data);
         })
@@ -40,7 +39,7 @@ function ManageCustomer() {
                 <td>{customer.email}</td>
                 <td>{customer.address}</td>
                 <div className={"d-flex justify-content-end gap-3"}>
-                    <button type="button" className="btn btn-success" onClick={() => deleteCustomer(customer.documentId)}>Ta bort</button>
+                    <button type="button" className="btn btn-danger" onClick={() => deleteCustomer(customer.documentId)}>Ta bort</button>
                 </div>
             </tr>))
     }

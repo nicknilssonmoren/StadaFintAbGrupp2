@@ -115,12 +115,6 @@ class RegisterRole extends Component {
                                 </div>
                             </div>
                         </fieldset>
-                        {/*<label>Role</label>
-                        <div className="input-group mb-3">
-                            <input name="role" type="text" className="form-control" placeholder="Role"
-                                   aria-label="Role"
-                                   aria-describedby="basic-addon1" onChange={this.handleChange}/>
-                        </div>*/}
                         <br/>
                         <button onClick={() => register(this.state)} id={"button"} type="button"
                                 className="btn btn-primary">Register
