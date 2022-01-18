@@ -26,7 +26,6 @@ function AcceptBooking() {
             })
 
         })
-            //.then(json)
             .then(function (data) {
                 console.log('Request succeeded with JSON response', data);
             })

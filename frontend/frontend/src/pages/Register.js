@@ -39,7 +39,6 @@ const register = async values => {
             })
 
         })
-            //.then(json)
             .then(function (data) {
                 console.log('Request succeeded with JSON response', data);
             })

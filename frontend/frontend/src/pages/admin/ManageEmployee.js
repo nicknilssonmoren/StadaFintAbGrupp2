@@ -9,7 +9,6 @@ function deleteEmployee(documentId) {
             "Access-Control-Allow-Origin": "http://localhost:8080/"
         }
     })
-        //.then(json)
         .then(function (data) {
             console.log('Request succeeded with JSON response', data);
         })

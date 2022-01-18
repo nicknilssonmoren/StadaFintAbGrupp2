@@ -75,34 +75,6 @@ function Bookings() {
                     <span className='bold'>Selected Date:</span>{' '}
                     {date.toDateString()}
                 </p>
-
-                {/*<form className={"d-flex justify-content-center pt-3"} id={"myChoice"}>
-                    <div className="form-check form-check-inline">
-                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"basic"} value={"basic"}/>
-                        <label className="form-check-label" htmlFor="basic">
-                            Basic Städning
-                        </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"topp"} value={"topp"}/>
-                        <label className="form-check-label" htmlFor="topp">
-                            Topp städning
-                        </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"diamant"} value={"diamant"}/>
-                        <label className="form-check-label" htmlFor="diamant">
-                            Diamant städning
-                        </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input className={"form-check-input"} type={"radio"} name={"cleaningChoice"} id={"fonster"} value={"fonster"}/>
-                        <label className="form-check-label" htmlFor="fonster">
-                            Fönstertvätt
-                        </label>
-                    </div>
-                </form>*/}
-
                 <form>
                     <div className={"d-flex justify-content-center pt-2"}>
                         <input placeholder={" Verify your email"} id={"email"}/>
@@ -149,9 +121,6 @@ function Bookings() {
                             className="btn btn-primary">Boka
                     </button>
                 </div>
-
-
-
             </div>
         </>
     );
