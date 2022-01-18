@@ -33,8 +33,7 @@ function AcceptBooking() {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
-
-        alert("Booking has been " + accepted);
+        window.location.reload()
     }
 
     function getAllBookings() {

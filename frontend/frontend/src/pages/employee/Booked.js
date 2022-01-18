@@ -34,7 +34,7 @@ function Booked() {
                 console.log('Request failed', error);
             });
 
-        alert("Booking has been completed.");
+        window.location.reload()
     }
 
     function getAllBookings() {
