@@ -23,7 +23,7 @@ const register = async values => {
 
     try {
         const {email, password, address, role} = values;
-        console.log(email, password);
+        console.log(email, password, role);
         const auth = getAuth();
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
@@ -93,22 +93,22 @@ class RegisterRole extends Component {
                                 <div className={"col-sm-14"}>
                                     <div className={"form-check"}>
                                         <input className="form-check-input" type="radio" name="role"
-                                               id="Customer" value="Customer" onChange={this.handleChange}/>
-                                        <label className="form-check-label" htmlFor="Customer">
-                                            Admin
-                                        </label>
-                                    </div>
-                                    <div className={"form-check"}>
-                                        <input className="form-check-input" type="radio" name="role" id="Admin"
-                                               value="Admin" onChange={this.handleChange}/>
+                                               id="Admin" value="Admin" onChange={this.handleChange}/>
                                         <label className="form-check-label" htmlFor="Admin">
-                                            Employee
+                                            Admin
                                         </label>
                                     </div>
                                     <div className={"form-check"}>
                                         <input className="form-check-input" type="radio" name="role" id="Employee"
                                                value="Employee" onChange={this.handleChange}/>
                                         <label className="form-check-label" htmlFor="Employee">
+                                            Employee
+                                        </label>
+                                    </div>
+                                    <div className={"form-check"}>
+                                        <input className="form-check-input" type="radio" name="role" id="Customer"
+                                               value="Customer" onChange={this.handleChange}/>
+                                        <label className="form-check-label" htmlFor="Customer">
                                             Customer
                                         </label>
                                     </div>

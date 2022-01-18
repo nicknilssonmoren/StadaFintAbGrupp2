@@ -39,7 +39,7 @@ function BookingHistory() {
     }
 
     function getHistoricBookings() {
-        return bookings.filter(booking => booking.status == "assigned")
+        return bookings.filter(booking => booking.status == "completed")
             .map(booking => (
                 <>
                     <a href="#" className="list-group-item list-group-item-action">
@@ -85,7 +85,7 @@ function BookingHistory() {
 
 function BookingHistory() {
     const [bookings, setBookings] = useState([])
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:8080/getAllBookings', {
             headers: {
                 'Authorization': 'Bearer ' + idToken
@@ -93,7 +93,7 @@ function BookingHistory() {
         })
             .then(req => req.json())
             .then(json => setBookings(json))
-    },[])
+    }, [])
 
     function getAllHistory() {
         return bookings.filter(booking => booking.date != null)
@@ -106,6 +106,7 @@ function BookingHistory() {
                     <td>{booking.employeeEmail}</td>
                 </tr>))
     }
+
     return (
         <div>
             <CustomerNavBar/>
@@ -129,6 +130,7 @@ function BookingHistory() {
             </div>
         </div>
     );
+    }
 }
 
 export default BookingHistory;
