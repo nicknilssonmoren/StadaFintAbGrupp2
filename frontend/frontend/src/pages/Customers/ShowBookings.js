@@ -37,7 +37,7 @@ function ShowBookings() {
     },[])
 
     function getAllBookings() {
-        return bookings.filter(booking => booking.status != "canceled")
+        return bookings.filter(booking => booking.status === "assigned" || booking.status === "booked")
             .map(booking => (
                 <tr key={booking.documentId}>
                     <td>{booking.date}</td>
