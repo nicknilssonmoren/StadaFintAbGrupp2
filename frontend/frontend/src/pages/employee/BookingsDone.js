@@ -14,7 +14,7 @@ function BookingsDone() {
             .then(json => setBookings(json))
     },[])
     function getAllFinishedBookings() {
-        return bookings.filter(booking => booking.status == "completed")
+        return bookings.filter(booking => booking.status === "completed")
             .map(booking => (
                     <li className="list-group-item list-group-item-success">Bokningen genomförd och fått betyg: {booking.grade}</li>
             ))

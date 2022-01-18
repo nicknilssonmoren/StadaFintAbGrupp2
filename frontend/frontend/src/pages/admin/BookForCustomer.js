@@ -45,7 +45,6 @@ async function bookIt(date, customers) {
             });
 
         alert("Your booking has successfully been created.");
-        //window.location = '/showBookings';
     } catch (e) {
         console.log(e);
         alert("Your booking failed");

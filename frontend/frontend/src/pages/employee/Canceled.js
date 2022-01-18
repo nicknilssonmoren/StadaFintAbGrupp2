@@ -15,7 +15,7 @@ function Canceled() {
     },[])
 
     function getCanceledBookings() {
-        return bookings.filter(booking => booking.status == "canceled")
+        return bookings.filter(booking => booking.status === "canceled")
             .map(booking => (
                 <a href="#" className="list-group-item list-group-item-action">
                     <div className="d-flex px-auto justify-content-between">
