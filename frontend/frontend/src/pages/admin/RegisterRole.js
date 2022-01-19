@@ -49,7 +49,6 @@ const register = async values => {
             });
 
         alert("Your account has successfully been created.");
-        window.location = '/';
     } catch (e) {
         alert("Email is already in use.");
     }
