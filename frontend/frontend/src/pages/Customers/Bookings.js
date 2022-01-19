@@ -67,7 +67,6 @@ function Bookings() {
             <CustomerNavBar />
             <div className='app'>
                 <br />
-                <h1 className='text-center'>Boka</h1>
                 <div className={"d-flex justify-content-center pt-3 calendar-container"}>
                     <Calendar onChange={setDate} value={date} id={"dateForMe"}/>
                 </div>
