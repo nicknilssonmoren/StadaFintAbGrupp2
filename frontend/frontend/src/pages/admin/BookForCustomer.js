@@ -67,8 +67,6 @@ function BookForCustomer() {
     return (<>
             <AdminNavBar />
             <div className='BookForCustomer'>
-                <br />
-                <h1 className='text-center'>Boka</h1>
                 <div className={"d-flex justify-content-center pt-5 calendar-container"}>
                     <Calendar onChange={setDate} value={date} id={"dateForMe"}/>
                 </div>
@@ -105,7 +103,7 @@ function BookForCustomer() {
                 </form>
 
                 <div className={"d-flex justify-content-center pt-5"}>
-                    <input placeholder={" Verify your email"} id={"email"}/>
+                    <input placeholder={" Kundens email"} id={"email"}/>
                 </div>
 
                 <div className={"d-flex justify-content-center pt-5"}>

@@ -67,8 +67,7 @@ class RegisterRole extends Component {
         return (
             <>
                 <AdminNavBar/>
-                <h1 className={"text-center pt-4"}>Register</h1>
-                <div className="justify-content-center d-flex">
+                <div className="justify-content-center d-flex pt-4">
                     <div>
                         <label>Email</label>
                         <div className="input-group mb-3">
