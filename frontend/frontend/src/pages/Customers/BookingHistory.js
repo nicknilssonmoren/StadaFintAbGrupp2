@@ -35,6 +35,7 @@ function BookingHistory() {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
+        window.location.reload()
     }
 
     function getHistoricBookings() {
