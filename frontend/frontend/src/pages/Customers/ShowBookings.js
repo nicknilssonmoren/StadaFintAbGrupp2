@@ -54,8 +54,6 @@ function ShowBookings() {
         return (
             <div>
                 <AdminNavBar/>
-                <h1 className={"text-center pt-4"}>Visa Bokade Städningar</h1>
-
                 <div className={"justify-content-center d-flex pt-4"}>
                     <table className="table w-75 p-3 ">
                         <thead>

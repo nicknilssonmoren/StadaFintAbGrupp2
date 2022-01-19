@@ -35,6 +35,7 @@ function BookingHistory() {
             .catch(function (error) {
                 console.log('Request failed', error);
             });
+        window.location.reload()
     }
 
     function getHistoricBookings() {
@@ -72,7 +73,6 @@ function BookingHistory() {
     return (
             <div>
                 <CustomerNavBar/>
-                <h1 className={"text-center pt-4"}>Historik</h1>
                 <div className={"d-flex justify-content-center pt-5"}>
                     <div className="list-group w-50">
                         {getHistoricBookings()}
